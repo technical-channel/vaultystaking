@@ -91,7 +91,7 @@ function Staking(props) {
   return (
     <div>
       {" "}
-      <div className="main-container" style={{ padding: "100px" }}>
+      <div className="main-container" style={{ padding: "20px" }}>
         <header className="main-header">
           <div
             className="main-header-content-container"
@@ -111,43 +111,6 @@ function Staking(props) {
                     }}
                   />
                   <ul className="main-header-navbar__nav">
-                    <li className="main-header-navbar__nav__item">
-                      <a href="#" className="main-header-navbar__nav__link">
-                        Home
-                      </a>
-                    </li>
-                    <li className="main-header-navbar__nav__item">
-                      <a
-                        href="#about"
-                        className="main-header-navbar__nav__link"
-                      >
-                        Buy
-                      </a>
-                    </li>
-                    <li className="main-header-navbar__nav__item">
-                      <a
-                        href="#features"
-                        className="main-header-navbar__nav__link"
-                      >
-                        Values
-                      </a>
-                    </li>
-                    <li className="main-header-navbar__nav__item">
-                      <a
-                        href="#price"
-                        className="main-header-navbar__nav__link"
-                      >
-                        Price
-                      </a>
-                    </li>
-                    <li className="main-header-navbar__nav__item">
-                      <a
-                        href="#roadmap"
-                        className="main-header-navbar__nav__link"
-                      >
-                        Roadmap
-                      </a>
-                    </li>
                     {connect ? (
                       <>
                         <li className="main-header-navbar__nav__item">
