@@ -178,6 +178,7 @@ function Staking(props) {
               style={{
                 color: "white",
                 marginLeft: "25%",
+                fontSize:"22px"
               }}
             >
               STAKING PAGE
