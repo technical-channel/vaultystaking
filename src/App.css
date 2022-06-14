@@ -28,10 +28,6 @@
   background-position: center;
   margin-bottom: 75px;
 } 
-
-.widthClsMobile{
-  display: none;
-}
 .main-header-navbar{
   
   width: 100%;
@@ -43,8 +39,8 @@
   margin-bottom: 50px;
 }
 .main-header-navbar__logo {
-  width: 40%;
-  max-width: 160px;
+  width: 80%;
+  max-width: 220px;
   margin-right: auto;
 }
 .main-header-navbar__login {
@@ -623,11 +619,12 @@ button[disabled]{
 /* Setting the border of top, bottom, left */
 .card:nth-child(odd)::before {
   left: 0px;
-  top: -6.5px;
-  bottom: -7.5px;
+  top: -4.5px;
+  bottom: -6.5px;
   border-width: 5px 0 5px 5px;
   border-radius: 50px 0 0 50px;
 }
+
 /* Setting the border of top, bottom, right */
 .card:nth-child(even)::before {
   right: 0;
@@ -1473,12 +1470,6 @@ button[disabled]{
 }
 }
 @media (max-width:900px) { 
-  .widthCls{
-    display: none;
-  }
-  .widthClsMobile{
-    display: block;
-  }
   .Social{
     flex-direction: column;
     align-items: center;
