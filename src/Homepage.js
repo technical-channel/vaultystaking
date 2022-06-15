@@ -51,9 +51,12 @@ function HomePage(props) {
   useEffect(async () => {
     console.log("New Address ", props.metamaskAddress);
     localStorage.setItem("Address", props.metamaskAddress);
-
-    if (!isApproved) {
+    if (props.metamaskAddress != "") {
+      setConnect(true);
+    } else {
       DisconnectWallet();
+    }
+    if (!isApproved) {
       setToken("");
       setIsApproved(true);
 
@@ -81,9 +84,9 @@ function HomePage(props) {
       }
     }
   }, [props.metamaskAddress]);
-  useEffect(() => {
-    DisconnectWallet();
-  }, []);
+  // useEffect(() => {
+  //   DisconnectWallet();
+  // }, []);
 
   async function handleClick() {
     if (window.ethereum) {
@@ -268,6 +271,7 @@ function HomePage(props) {
                     naviagte("/staking");
                   }}
                   className="main-header-navbar__nav__link"
+                  style={{ cursor: "pointer" }}
                 >
                   Staking
                 </a>

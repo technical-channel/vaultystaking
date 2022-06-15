@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/logo.svg";
 import "./staking.css";
 
@@ -22,6 +22,13 @@ function Staking(props) {
   const [Number, setNumber] = useState("");
   const [Month, setMonth] = useState(0);
   const navigate = useNavigate();
+  useEffect(() => {
+    if (props.metamaskAddress != "") {
+      setConnect(true);
+    } else {
+      setConnect(false);
+    }
+  }, [props.metamaskAddress]);
 
   async function handleApprove() {
     if (connect) {
@@ -90,7 +97,8 @@ function Staking(props) {
   // console.log(new web3_.eth.Contract(StakingABI, staking));
   return (
     <div>
-      {" "}
+      {console.log(props.metamaskAddress)}
+
       <div className="main-container" style={{ padding: "20px" }}>
         <header className="main-header">
           <div
@@ -110,14 +118,24 @@ function Staking(props) {
                       navigate("/");
                     }}
                   />
-                  <ul className="main-header-navbar__nav">
+                  <ul
+                    style={{
+                      display: "flex",
+                      justifyContent: "end ",
+                      alignItems: "center",
+                    }}
+                  >
                     {connect ? (
                       <>
                         <li className="main-header-navbar__nav__item">
                           <a
                             href="#"
                             className="main-header-navbar__nav__link"
-                            style={{ fontSize: "10px !important" }}
+                            style={{
+                              fontSize: "10px !important",
+                              margin: "10px",
+                              cursor: "pointer",
+                            }}
                           >
                             {props.metamaskAddress &&
                               `${props.metamaskAddress.slice(
@@ -145,6 +163,9 @@ function Staking(props) {
                                 padding: 5,
                                 color: "green",
                                 fontSize: 10,
+                                fontSize: "10px !important",
+                                margin: "10px",
+                                cursor: "pointer",
                               }}
                             >
                               Disconnect
@@ -174,15 +195,6 @@ function Staking(props) {
                 {/* Header content */}
               </div>
             </header>
-            <h1
-              style={{
-                color: "white",
-                marginLeft: "25%",
-                fontSize:"22px"
-              }}
-            >
-              STAKING PAGE
-            </h1>
 
             <div class="login-box">
               <h2>Choose a staking duration</h2>
@@ -190,7 +202,7 @@ function Staking(props) {
                 style={{
                   display: "flex",
                   margin: "10 -5px",
-                  flexWrap: "wrap",
+
                   justifyContent: "space-around",
                 }}
               >
@@ -210,6 +222,7 @@ function Staking(props) {
                     onClick={() => {
                       setMonth(2);
                     }}
+                    disabled
                   >
                     3 Months
                   </button>
@@ -220,6 +233,7 @@ function Staking(props) {
                     onClick={() => {
                       setMonth(3);
                     }}
+                    disabled
                   >
                     6 Months
                   </button>
@@ -230,6 +244,7 @@ function Staking(props) {
                     onClick={() => {
                       setMonth(4);
                     }}
+                    disabled
                   >
                     12 Months
                   </button>
@@ -285,6 +300,7 @@ function Staking(props) {
                 </div>
 
                 <div
+                  className="flexClass"
                   style={{
                     display: "flex",
                     justifyContent: "space-between",

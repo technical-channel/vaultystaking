@@ -1,7 +1,7 @@
 .login-box {
 
     padding: 40px;
-    margin-top: 357px;
+    margin-top: 167px;
     color: #fff !important;
     width : 100%;
     margin-left: 50%;
@@ -70,7 +70,16 @@
   color: #03e9f4;
   font-size: 12px;
 }
-
+button:active {
+  background-color: #15b2eb;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+button:disabled{
+  background-color: #414141;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 /* .StakeDurationButton {
   backgroundColor: "#040347", 
                   border: "none",
@@ -197,5 +206,15 @@
  @media only screen and (max-width: 750px) {
 .login-box{
   width:unset;
+}
+.btnStake {
+ 
+  margin: 5px;
+  padding: 5px;
+  font-size: 10px;
+ 
+}
+.flexClass{
+flex-wrap: nowrap !important;
 }
 } 
