@@ -129,7 +129,7 @@ button:disabled{
   animation: btn-anim1 1s linear infinite;
 }
 
-@keyframes btn-anim1 {
+/* @keyframes btn-anim1 {
   0% {
     left: -100%;
   }
@@ -138,19 +138,19 @@ button:disabled{
   100% {
     left: 100%;
   }
-}
+} */
 
 .login-box a span:nth-child(2) {
   top: -100%;
   right: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, #03e9f4);
-  animation: btn-anim2 1s linear infinite;
-  animation-delay: .25s
+  /* background: linear-gradient(180deg, transparent, #03e9f4);
+  /* animation: btn-anim2 1s linear infinite; */
+  /* animation-delay: .25s */ 
 }
 
-@keyframes btn-anim2 {
+/* @keyframes btn-anim2 {
   0% {
     top: -100%;
   }
@@ -159,7 +159,7 @@ button:disabled{
   100% {
     top: 100%;
   }
-}
+} */
 
 .login-box a span:nth-child(3) {
   bottom: 0;

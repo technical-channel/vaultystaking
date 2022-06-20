@@ -21,18 +21,115 @@ function Staking(props) {
   const [isApprovedBuy, setIsApprovedBuy] = useState(true);
   const [Number, setNumber] = useState("");
   const [Month, setMonth] = useState(0);
+  const [Approval, setApproval] = useState(false);
+  const [IsAlreadyStake, setIsAlreadyStake] = useState(false);
+  const [UserData, setUserData] = useState("");
+  const [UserBalance, setUserBalance] = useState(0);
+  const [TotalStaked, setTotalStaked] = useState(0);
+
+  const [selectedMonth, setSelectedMonth] = useState({
+    one: false,
+    two: false,
+    three: false,
+    four: false,
+  });
   const navigate = useNavigate();
-  useEffect(() => {
+  useEffect(async () => {
     if (props.metamaskAddress != "") {
       setConnect(true);
+
+      let isAlreadyStake = await new web3_.eth.Contract(
+        StakingABI,
+        staking
+      ).methods
+        .isAlreadyStaked(props.metamaskAddress)
+        .call();
+
+      let userData = await new web3_.eth.Contract(StakingABI, staking).methods
+        .stakersDataset(props.metamaskAddress)
+        .call();
+
+      setIsAlreadyStake(isAlreadyStake);
+      setUserData(userData);
+      console.log("user data : ", UserData);
+
+      let vaultyBalance = await new web3_.eth.Contract(
+        vaultyABI,
+        vaulty
+      ).methods
+        .balanceOf(props.metamaskAddress)
+        .call();
+
+      setUserBalance(vaultyBalance);
+      let totalStakeAmount = await new web3_.eth.Contract(
+        StakingABI,
+        staking
+      ).methods
+        .totalStaked()
+        .call();
+      setTotalStaked(totalStakeAmount);
+
+      console.log(isAlreadyStake, "User is already staked or not");
     } else {
       setConnect(false);
     }
   }, [props.metamaskAddress]);
 
+  async function doStaking(stakeAmount, stakeDuration) {
+    return await new web3_.eth.Contract(StakingABI, staking).methods
+      .poolStake(stakeAmount, stakeDuration)
+      .send({ from: props.metamaskAddress });
+  }
+
+  async function tokenApprove(stakingContractAddr, amount) {
+    return await new web3_.eth.Contract(vaultyABI, vaulty).methods
+      .approve(stakingContractAddr, amount)
+      .send({ from: props.metamaskAddress });
+  }
+
+  async function handleStake() {
+    if (connect) {
+      if (Approval) {
+        const tkn = web3_.utils.toWei(Number.toString(), "Gwei");
+        const output = await doStaking(tkn, Month)
+          .then((res) => {
+            Swal.fire("Sucess", "Staking Sucessfully", "success");
+          })
+          .catch((e) => {
+            Swal.fire("error", "Please Try Again", "error");
+            console.log(e);
+          });
+        setApproval(false);
+      } else {
+        Swal.fire("Warning", "Please Approve First", "warning");
+      }
+    } else {
+      Swal.fire("Warning", "Please Connect to the Wallet First", "warning");
+    }
+  }
+
+  async function handleUnStake() {
+    if (connect) {
+      return await new web3_.eth.Contract(StakingABI, staking).methods
+        .unstake()
+        .send({ from: props.metamaskAddress })
+        .then((res) => {
+          Swal.fire("Success", "Unstaking Successfully", "success");
+        })
+        .catch((e) => {
+          Swal.fire("error", "Please Try Again", "error");
+          console.log(e);
+        });
+    } else {
+      Swal.fire("Warning", "Please Connect to the Wallet First", "warning");
+    }
+  }
+
   async function handleApprove() {
     if (connect) {
-      if (Month != 0) {
+      if (Number === "0") {
+        Swal.fire("Warning", "Please Enter amount greater then 0", "warning");
+      } else if (Month != 0) {
         if (Number != "") {
           let vaultyBalance = await new web3_.eth.Contract(
             vaultyABI,
@@ -47,16 +144,23 @@ function Staking(props) {
           ).methods
             .isAlreadyStaked(props.metamaskAddress)
             .call();
-
+          const tkn = web3_.utils.toWei(Number.toString(), "Gwei");
           console.log(
             "Vaulty Balance : ",
             parseFloat(vaultyBalance) / Math.pow(10, 9)
           );
 
-          if (parseFloat(vaultyBalance) / Math.pow(10, 9) >= Number) {
-            // require(!isAlreadyStaked(msg.sender), "User has Already Staked");
+          if (parseFloat(vaultyBalance) >= tkn) {
             if (!isAlreadyStake) {
               console.log("Transaction Possible");
+              await tokenApprove(staking, tkn)
+                .then((res) => {
+                  Swal.fire("success", "Stake Seccessfully", "success");
+                  setApproval(true);
+                })
+                .catch((error) => {
+                  Swal.fire("error", "Please Try Again", "error");
+                });
             } else {
               Swal.fire("Warning", "User is already Staked", "warning");
             }
@@ -97,8 +201,7 @@ function Staking(props) {
   // console.log(new web3_.eth.Contract(StakingABI, staking));
   return (
     <div>
-      {console.log(props.metamaskAddress)}
-
+      {console.log("User Data : ", UserData)}
       <div className="main-container" style={{ padding: "20px" }}>
         <header className="main-header">
           <div
@@ -211,7 +314,14 @@ function Staking(props) {
                     className="btnStake"
                     onClick={() => {
                       setMonth(1);
+                      setSelectedMonth({
+                        one: true,
+                        two: false,
+                        three: false,
+                        four: false,
+                      });
                     }}
+                    disabled={selectedMonth.one}
                   >
                     1 Month
                   </button>
@@ -221,8 +331,14 @@ function Staking(props) {
                     className="btnStake"
                     onClick={() => {
                       setMonth(2);
+                      setSelectedMonth({
+                        one: false,
+                        two: true,
+                        three: false,
+                        four: false,
+                      });
                     }}
-                    disabled
+                    disabled={selectedMonth.two}
                   >
                     3 Months
                   </button>
@@ -232,8 +348,14 @@ function Staking(props) {
                     className="btnStake"
                     onClick={() => {
                       setMonth(3);
+                      setSelectedMonth({
+                        one: false,
+                        two: false,
+                        three: true,
+                        four: false,
+                      });
                     }}
-                    disabled
+                    disabled={selectedMonth.three}
                   >
                     6 Months
                   </button>
@@ -243,8 +365,14 @@ function Staking(props) {
                     className="btnStake"
                     onClick={() => {
                       setMonth(4);
+                      setSelectedMonth({
+                        one: false,
+                        two: false,
+                        three: false,
+                        four: true,
+                      });
                     }}
-                    disabled
+                    disabled={selectedMonth.four}
                   >
                     12 Months
                   </button>
@@ -265,7 +393,7 @@ function Staking(props) {
                     required
                     value={Number}
                     onChange={(e) => {
-                      if (e.target.value <= 0) {
+                      if (e.target.value < 0) {
                         setNumber("");
                         Swal.fire("please enter valid value");
                         return;
@@ -284,7 +412,10 @@ function Staking(props) {
                     <p className="cardFont">APY</p>
                   </div>
                   <div>
-                    <p className="cardFont"> 90%</p>
+                    <p className="cardFont">
+                      {" "}
+                      {UserData.apy / Math.pow(10, 9)} %
+                    </p>
                   </div>
                 </div>
 
@@ -295,7 +426,10 @@ function Staking(props) {
                     <p className="cardFont">You staked : </p>
                   </div>
                   <div>
-                    <p className="cardFont"> 90%</p>
+                    <p className="cardFont">
+                      {" "}
+                      {UserData.stackAmount / Math.pow(10, 9)} $VLT
+                    </p>
                   </div>
                 </div>
 
@@ -310,7 +444,10 @@ function Staking(props) {
                     <p className="cardFont">Your balance : </p>
                   </div>
                   <div>
-                    <p className="cardFont"> 90%</p>
+                    <p className="cardFont">
+                      {" "}
+                      {UserBalance / Math.pow(10, 9)} $VLT
+                    </p>
                   </div>
                 </div>
 
@@ -321,31 +458,123 @@ function Staking(props) {
                     <p className="cardFont">Total staked : </p>
                   </div>
                   <div>
-                    <p className="cardFont"> 90%</p>
+                    <p className="cardFont">
+                      {" "}
+                      {TotalStaked / Math.pow(10, 9)} $VLT
+                    </p>
+                  </div>
+                </div>
+                {!IsAlreadyStake ? (
+                  <>
+                    {" "}
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-around",
+                      }}
+                    >
+                      {!Approval ? (
+                        <>
+                          <a onClick={handleApprove}>
+                            <span />
+                            <span />
+                            <span />
+                            <span />
+                            Approve
+                          </a>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+
+                      <a onClick={handleStake}>
+                        <span />
+                        <span />
+                        <span />
+                        <span />
+                        Stake
+                      </a>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <a onClick={handleUnStake}>
+                      <span />
+                      <span />
+                      <span />
+                      <span />
+                      Unstake
+                    </a>
+                  </>
+                )}
+              </form>
+            </div>
+            <div class="login-box">
+              <h2>APY Percentage</h2>
+              <div
+                style={{
+                  display: "flex",
+                  margin: "10 -5px",
+
+                  justifyContent: "space-around",
+                }}
+              ></div>
+
+              <form>
+                <div
+                  className="user-box"
+                  style={{
+                    margin: "5px",
+                  }}
+                ></div>
+
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <div>
+                    <p className="cardFont">30 DAYS</p>
+                  </div>
+                  <div>
+                    <p className="cardFont">2%</p>
                   </div>
                 </div>
 
                 <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <div>
+                    <p className="cardFont">90 DAYS</p>
+                  </div>
+                  <div>
+                    <p className="cardFont">5%</p>
+                  </div>
+                </div>
+
+                <div
+                  className="flexClass"
                   style={{
                     display: "flex",
-                    justifyContent: "space-around",
+                    justifyContent: "space-between",
                   }}
                 >
-                  <a onClick={handleApprove}>
-                    <span />
-                    <span />
-                    <span />
-                    <span />
-                    Approve
-                  </a>
+                  <div>
+                    <p className="cardFont">180 DAYS</p>
+                  </div>
+                  <div>
+                    <p className="cardFont">20%</p>
+                  </div>
+                </div>
 
-                  <a href="#">
-                    <span />
-                    <span />
-                    <span />
-                    <span />
-                    Stake
-                  </a>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <div>
+                    <p className="cardFont">365 DAYS</p>
+                  </div>
+                  <div>
+                    <p className="cardFont">50%</p>
+                  </div>
                 </div>
               </form>
             </div>

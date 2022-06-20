@@ -357,6 +357,9 @@ function HomePage(props) {
                   fontSize: "20px",
                   fontWeight: "bold",
                 }}
+                onClick={() => {
+                  naviagte("/airdrop");
+                }}
               >
                 AirDrop
               </a>
