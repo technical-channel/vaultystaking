@@ -401,6 +401,7 @@ function Staking(props) {
                         setNumber(e.target.value);
                       }
                     }}
+                    style={{ margin: 10 }}
                   />
                   <label>Enter Amount </label>
                 </div>

@@ -67,7 +67,7 @@ function HomePage(props) {
         const res = contract.getTokenomics().call();
 
         const whitelisted = await contract
-          .verifyUserList(props.metamaskAddress)
+          .verifyUser(props.metamaskAddress)
           .call();
         console.log(whitelisted, "whitelisted");
         setWhitelisted(whitelisted);
@@ -425,7 +425,18 @@ function HomePage(props) {
                 <>
                   {whitelisted ? (
                     <>
-                      <div className="flexDiv">
+                      <div
+                        className="flexDiv"
+                        style={{
+                          background: "white",
+                          maxWidth: "400px",
+                          backgroundColor: "#fff",
+                          color: "#000",
+                          borderRadius: "10px",
+                          padding: "25px 15px",
+                          textAlign: "justify",
+                        }}
+                      >
                         <div>
                           <h3
                             className="why-us-section__content__title"
@@ -444,7 +455,10 @@ function HomePage(props) {
                                 padding: 8,
                                 marginTop: 10,
                                 width: "100%",
-                                color: "black",
+                                border: "2px solid black !important",
+                                backgroundColor: "#e9ecef",
+                                borderRadius: 5,
+                                fontSize: 14,
                               }}
                               value={token}
                               disabled={inputDisable}
@@ -456,8 +470,10 @@ function HomePage(props) {
                                 width: "85px",
                                 justifyContent: "space-around",
                                 marginTop: "10px",
+                                backgroundColor: "#e9ecef",
                                 borderRadius: 7,
                                 marginLeft: 8,
+                                fontSize: 14,
                                 display: "flex",
                                 alignItems: "center",
                               }}
@@ -480,7 +496,6 @@ function HomePage(props) {
                                 padding: 10,
                                 marginTop: 10,
                                 width: "100%",
-                                background: "white",
                               }}
                               disabled
                             />
@@ -505,7 +520,7 @@ function HomePage(props) {
 
                         <div className="flexDivBtn">
                           <button
-                            className="why-us-section__content__btn"
+                            className="glow-on-hover"
                             onClick={handleApprove}
                             disabled={token == "" || isApproved == false}
                           >
@@ -526,7 +541,7 @@ function HomePage(props) {
                             </div>
                           </button>
                           <button
-                            className="why-us-section__content__btn"
+                            className="glow-on-hover"
                             onClick={handleBuy}
                             disabled={isApproved || isApprovedBuy}
                           >

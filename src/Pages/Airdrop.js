@@ -228,213 +228,204 @@ function Airdrop(props) {
               </div>
             </div>
             {/* Participate in #cryptocontest Just follow simple steps. */}
-            {task == 0 ? (
-              <>
-                <div
-                  className="main-header-content-container"
-                  style={{ justifyContent: "space-around", margin: 10 }}
-                >
-                  <div className="main-header-content-principal">
-                    <h1 className="main-header-content-principal__title">
-                      Follow <span>#Vaultypro </span> &amp;
-                      <span className=""> #VaultyWallet</span>
-                    </h1>
-                    <a
-                      href="https://twitter.com/intent/tweet?button_hashtag=#Vaultypro #VaultyWallet&ref_src=twsrc%5Etfw"
-                      class="twitter-hashtag-button"
-                      target="_blank"
-                      data-show-count="false"
-                      className="main-header-navbar__nav__link disconnectButton"
-                      style={{
-                        borderRadius: "50px",
-                        border: "2px solid green",
-                        padding: 10,
-                        color: "green",
-                        cursor: "pointer",
-                        fontSize: "20px",
-                        fontWeight: "bold",
-                      }}
-                      onClick={() => {
-                        setTask(task + 1);
-                      }}
-                    >
-                      Tweet #Vaultypro #VaultyWallet
-                    </a>
-                  </div>
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Twitter_logo.svg/2560px-Twitter_logo.svg.png"
-                    style={{ width: 100 }}
-                    alt
-                    className=""
-                  />
+            <>
+              <div
+                className="main-header-content-container"
+                style={{ justifyContent: "space-around", margin: 10 }}
+              >
+                <div className="main-header-content-principal">
+                  <h1 className="main-header-content-principal__title">
+                    Follow <span>#Vaultypro </span> &amp;
+                    <span className=""> #VaultyWallet</span>
+                  </h1>
+                  <a
+                    href="https://twitter.com/intent/tweet?button_hashtag=#Vaultypro #VaultyWallet&ref_src=twsrc%5Etfw"
+                    class="twitter-hashtag-button"
+                    target="_blank"
+                    data-show-count="false"
+                    className="main-header-navbar__nav__link disconnectButton"
+                    style={{
+                      borderRadius: "50px",
+                      border: "2px solid green",
+                      padding: 10,
+                      color: "green",
+                      cursor: "pointer",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                    }}
+                    onClick={() => {
+                      setTask(task + 1);
+                    }}
+                  >
+                    Tweet #Vaultypro #VaultyWallet
+                  </a>
                 </div>
-              </>
-            ) : null}
-            {task == 1 ? (
-              <>
-                <div
-                  className="main-header-content-container"
-                  style={{ justifyContent: "space-around", margin: 10 }}
-                >
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/2048px-Facebook_f_logo_%282021%29.svg.png"
-                    style={{ width: 100 }}
-                    alt
-                    className=""
-                  />
-                  <div className="main-header-content-principal">
-                    <h1 className="main-header-content-principal__title">
-                      Join <span>Facebook Page</span>
-                    </h1>
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Twitter_logo.svg/2560px-Twitter_logo.svg.png"
+                  style={{ width: 100 }}
+                  alt
+                  className=""
+                />
+              </div>
+            </>
+            <>
+              <div
+                className="main-header-content-container"
+                style={{ justifyContent: "space-around", margin: 10 }}
+              >
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/2048px-Facebook_f_logo_%282021%29.svg.png"
+                  style={{ width: 100 }}
+                  alt
+                  className=""
+                />
+                <div className="main-header-content-principal">
+                  <h1 className="main-header-content-principal__title">
+                    Join <span>Facebook Page</span>
+                  </h1>
 
-                    <a
-                      className="main-header-navbar__nav__link disconnectButton"
-                      href="https://www.facebook.com/VaultyPRO"
-                      target="_blank"
-                      style={{
-                        borderRadius: "50px",
-                        border: "2px solid green",
-                        padding: 10,
-                        color: "green",
-                        cursor: "pointer",
-                        fontSize: "20px",
-                        fontWeight: "bold",
-                      }}
-                      onClick={() => {
-                        setTask(task + 1);
-                      }}
-                    >
-                      Follow On Facebook
-                    </a>
-                  </div>
+                  <a
+                    className="main-header-navbar__nav__link disconnectButton"
+                    href="https://www.facebook.com/VaultyPRO"
+                    target="_blank"
+                    style={{
+                      borderRadius: "50px",
+                      border: "2px solid green",
+                      padding: 10,
+                      color: "green",
+                      cursor: "pointer",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                    }}
+                    onClick={() => {
+                      setTask(task + 1);
+                    }}
+                  >
+                    Follow On Facebook
+                  </a>
                 </div>
-              </>
-            ) : null}
-            {task == 2 ? (
-              <>
-                {" "}
-                <div
-                  className="main-header-content-container"
-                  style={{ justifyContent: "space-around" }}
-                >
-                  <div className="main-header-content-principal">
-                    <h1 className="main-header-content-principal__title">
-                      Tag <span>3 Friends</span>
-                      <span className=""> In Comment Section</span>
-                    </h1>
+              </div>
+            </>
+            <>
+              {" "}
+              <div
+                className="main-header-content-container"
+                style={{ justifyContent: "space-around" }}
+              >
+                <div className="main-header-content-principal">
+                  <h1 className="main-header-content-principal__title">
+                    Tag <span>3 Friends</span>
+                    <span className=""> In Comment Section</span>
+                  </h1>
 
-                    <a
-                      className="main-header-navbar__nav__link disconnectButton"
-                      href="https://www.facebook.com/VaultyPRO"
-                      target="_blank"
-                      style={{
-                        borderRadius: "50px",
-                        border: "2px solid green",
-                        padding: 10,
-                        color: "green",
-                        cursor: "pointer",
-                        fontSize: "20px",
-                        fontWeight: "bold",
-                      }}
-                      onClick={() => {
-                        setTask(task + 1);
-                      }}
-                    >
-                      Comment
-                    </a>
-                  </div>
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/2048px-Facebook_f_logo_%282021%29.svg.png"
-                    style={{ width: 100 }}
-                    alt
-                    className=""
-                  />
+                  <a
+                    className="main-header-navbar__nav__link disconnectButton"
+                    href="https://www.facebook.com/VaultyPRO"
+                    target="_blank"
+                    style={{
+                      borderRadius: "50px",
+                      border: "2px solid green",
+                      padding: 10,
+                      color: "green",
+                      cursor: "pointer",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                    }}
+                    onClick={() => {
+                      setTask(task + 1);
+                    }}
+                  >
+                    Comment
+                  </a>
                 </div>
-              </>
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/2048px-Facebook_f_logo_%282021%29.svg.png"
+                  style={{ width: 100 }}
+                  alt
+                  className=""
+                />
+              </div>
+            </>
             ) : null}
-            {task == 3 ? (
-              <>
-                {" "}
-                <div
-                  className="main-header-content-container"
-                  style={{ justifyContent: "space-around", margin: 10 }}
-                >
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png"
-                    style={{ width: 100 }}
-                    alt
-                    className=""
-                  />
-                  <div className="main-header-content-principal">
-                    <h1 className="main-header-content-principal__title">
-                      Put A <span>Story Mentioning Us</span>
-                    </h1>
+            <>
+              {" "}
+              <div
+                className="main-header-content-container"
+                style={{ justifyContent: "space-around", margin: 10 }}
+              >
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png"
+                  style={{ width: 100 }}
+                  alt
+                  className=""
+                />
+                <div className="main-header-content-principal">
+                  <h1 className="main-header-content-principal__title">
+                    Put A <span>Story Mentioning Us</span>
+                  </h1>
 
-                    <a
-                      className="main-header-navbar__nav__link disconnectButton"
-                      href="https://www.instagram.com/vaultypro/"
-                      target="_blank"
-                      style={{
-                        borderRadius: "50px",
-                        border: "2px solid green",
-                        padding: 10,
-                        color: "green",
-                        cursor: "pointer",
-                        fontSize: "20px",
-                        fontWeight: "bold",
-                      }}
-                      onClick={() => {
-                        setTask(task + 1);
-                      }}
-                    >
-                      Story Instagram
-                    </a>
-                  </div>
+                  <a
+                    className="main-header-navbar__nav__link disconnectButton"
+                    href="https://www.instagram.com/vaultypro/"
+                    target="_blank"
+                    style={{
+                      borderRadius: "50px",
+                      border: "2px solid green",
+                      padding: 10,
+                      color: "green",
+                      cursor: "pointer",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                    }}
+                    onClick={() => {
+                      setTask(task + 1);
+                    }}
+                  >
+                    Story Instagram
+                  </a>
                 </div>
-              </>
-            ) : null}
-            {task == 4 ? (
-              <>
-                {" "}
-                <div
-                  className="main-header-content-container"
-                  style={{ justifyContent: "space-around" }}
-                >
-                  <div className="main-header-content-principal">
-                    <h1 className="main-header-content-principal__title">
-                      Join <span>Our</span>
-                      <span className=""> Telegram Group</span>
-                    </h1>
+              </div>
+            </>
+            <>
+              {" "}
+              <div
+                className="main-header-content-container"
+                style={{ justifyContent: "space-around" }}
+              >
+                <div className="main-header-content-principal">
+                  <h1 className="main-header-content-principal__title">
+                    Join <span>Our</span>
+                    <span className=""> Telegram Group</span>
+                  </h1>
 
-                    <a
-                      className="main-header-navbar__nav__link disconnectButton"
-                      href="https://t.me/vaultypro"
-                      target="_blank"
-                      style={{
-                        borderRadius: "50px",
-                        border: "2px solid green",
-                        padding: 10,
-                        color: "green",
-                        cursor: "pointer",
-                        fontSize: "20px",
-                        fontWeight: "bold",
-                      }}
-                      onClick={() => {
-                        setTask(task + 1);
-                      }}
-                    >
-                      Join Telegram
-                    </a>
-                  </div>
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png"
-                    style={{ width: 100 }}
-                    alt
-                    className=""
-                  />
+                  <a
+                    className="main-header-navbar__nav__link disconnectButton"
+                    href="https://t.me/vaultypro"
+                    target="_blank"
+                    style={{
+                      borderRadius: "50px",
+                      border: "2px solid green",
+                      padding: 10,
+                      color: "green",
+                      cursor: "pointer",
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                    }}
+                    onClick={() => {
+                      setTask(task + 1);
+                    }}
+                  >
+                    Join Telegram
+                  </a>
                 </div>
-              </>
-            ) : null}
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/2048px-Telegram_logo.svg.png"
+                  style={{ width: 100 }}
+                  alt
+                  className=""
+                />
+              </div>
+            </>
           </div>
           {task === 5 ? (
             <>
