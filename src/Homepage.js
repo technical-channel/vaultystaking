@@ -64,7 +64,7 @@ function HomePage(props) {
       if (counter > 0) {
       } else {
         let contract = await new web3_.eth.Contract(icoAbi, ico).methods;
-        const res = contract.getTokenomics().call();
+        const res = await contract.getTokenomics().call();
 
         const whitelisted = await contract
           .verifyUser(props.metamaskAddress)
