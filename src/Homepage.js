@@ -71,6 +71,7 @@ function HomePage(props) {
           .call();
         console.log(whitelisted, "whitelisted");
         setWhitelisted(whitelisted);
+        console.log(res);
         setDetails(res);
         const icoOver = await contract.isIcoOver().call();
         setSale(icoOver);
@@ -222,6 +223,7 @@ function HomePage(props) {
           setIsApproved(true);
           setSpinnerAppr(false);
           setKees("");
+          navigate("/success");
         })
 
         .catch((err) => {
