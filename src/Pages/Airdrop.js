@@ -23,7 +23,7 @@ function Airdrop(props) {
   const [connect, setConnect] = useState(false);
   const [isApprovedBuy, setIsApprovedBuy] = useState(true);
   const [Number, setNumber] = useState("");
-  const [task, setTask] = useState(5);
+  const [task, setTask] = useState(0);
   const [selectedMonth, setSelectedMonth] = useState({
     one: false,
     two: false,
@@ -290,6 +290,7 @@ function Airdrop(props) {
                     <a
                       className="main-header-navbar__nav__link disconnectButton"
                       href="https://www.facebook.com/VaultyPRO"
+                      target="_blank"
                       style={{
                         borderRadius: "50px",
                         border: "2px solid green",

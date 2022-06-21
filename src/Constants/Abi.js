@@ -542,6 +542,19 @@ export const icoAbi = [
   {
     inputs: [
       {
+        internalType: "address",
+        name: "_addr",
+        type: "address",
+      },
+    ],
+    name: "RemoveWhiteListed",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "uint256",
         name: "_busdAmount",
         type: "uint256",
@@ -569,6 +582,58 @@ export const icoAbi = [
       },
     ],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address[]",
+        name: "_addressToWhitelist",
+        type: "address[]",
+      },
+    ],
+    name: "addBulkUsers",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_addressToWhitelist",
+        type: "address",
+      },
+    ],
+    name: "addUser",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_addressToWhitelist",
+        type: "address",
+      },
+    ],
+    name: "addUserLIST",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getAllWhiteListedUsers",
+    outputs: [
+      {
+        internalType: "address[]",
+        name: "",
+        type: "address[]",
+      },
+    ],
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -677,35 +742,6 @@ export const icoAbi = [
   {
     inputs: [
       {
-        internalType: "address",
-        name: "_tokenAddr",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "_amount",
-        type: "uint256",
-      },
-      {
-        internalType: "address",
-        name: "_toWallet",
-        type: "address",
-      },
-    ],
-    name: "retrieveStuckedVaultyToken",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
         internalType: "uint256",
         name: "_startTime",
         type: "uint256",
@@ -752,7 +788,46 @@ export const icoAbi = [
     stateMutability: "view",
     type: "function",
   },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_whitelistedAddress",
+        type: "address",
+      },
+    ],
+    name: "verifyUser",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_whitelistedAddress",
+        type: "address",
+      },
+    ],
+    name: "verifyUserList",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
 ];
+
 export const airDrop = [
   [
     {

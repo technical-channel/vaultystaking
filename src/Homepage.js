@@ -2,10 +2,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import moment from "moment";
-import { useNavigate } from "react-router-dom";
 
-import logo from "./assets/logo.svg";
+import logo from "./assets/vaulty.png";
 import bgImg from "./assets/ilustrator.png";
+import { useNavigate } from "react-router-dom";
 import cardicon1 from "./assets/cardicon1.png";
 import cardicon2 from "./assets/cardicon2.png";
 import cardicon3 from "./assets/cardicon3.png";
@@ -31,10 +31,11 @@ import { store } from "./Redux/store";
 import { ProgressBar } from "react-bootstrap";
 import CounterComponent from "./Components/Counter";
 function HomePage(props) {
-  const naviagte = useNavigate();
   const [connect, setConnect] = useState(false);
+  const navigate = useNavigate();
   const [sale, setSale] = useState(true);
   const [tokenData, setTokenData] = useState("");
+  const [whitelisted, setWhitelisted] = useState(false);
   const [isApprovedBuy, setIsApprovedBuy] = useState(true);
   const [details, setDetails] = useState([]);
   const [token, setToken] = useState("");
@@ -51,12 +52,9 @@ function HomePage(props) {
   useEffect(async () => {
     console.log("New Address ", props.metamaskAddress);
     localStorage.setItem("Address", props.metamaskAddress);
-    if (props.metamaskAddress != "") {
-      setConnect(true);
-    } else {
-      DisconnectWallet();
-    }
+
     if (!isApproved) {
+      DisconnectWallet();
       setToken("");
       setIsApproved(true);
 
@@ -65,28 +63,24 @@ function HomePage(props) {
     if (props.metamaskAddress != "") {
       if (counter > 0) {
       } else {
-        const res = await new web3_.eth.Contract(icoAbi, ico).methods
-          .getTokenomics()
+        let contract = await new web3_.eth.Contract(icoAbi, ico).methods;
+        const res = contract.getTokenomics().call();
+
+        const whitelisted = await contract
+          .verifyUserList(props.metamaskAddress)
           .call();
+        console.log(whitelisted, "whitelisted");
+        setWhitelisted(whitelisted);
         setDetails(res);
-        const icoOver = await new web3_.eth.Contract(icoAbi, ico).methods
-          .isIcoOver()
-          .call();
+        const icoOver = await contract.isIcoOver().call();
         setSale(icoOver);
         console.log("ico khatam", icoOver);
         setDetails(res);
-        setTokenData(
-          await new web3_.eth.Contract(icoAbi, ico).methods
-            .showAllTrade()
-            .call()
-        );
+        setTokenData(contract.showAllTrade().call());
         setCounter(counter + 1);
       }
     }
   }, [props.metamaskAddress]);
-  // useEffect(() => {
-  //   DisconnectWallet();
-  // }, []);
 
   async function handleClick() {
     if (window.ethereum) {
@@ -103,7 +97,18 @@ function HomePage(props) {
       setIsApprovedBuy(true);
     }
   }
-
+  async function handleWhitelist() {
+    console.log("yessss");
+    await new web3_.eth.Contract(icoAbi, ico).methods
+      .addUserLIST(props.metamaskAddress)
+      .send({ from: props.metamaskAddress })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   async function handleChange(e) {
     function isNumeric(n) {
       return !isNaN(parseFloat(n)) && isFinite(n);
@@ -242,7 +247,7 @@ function HomePage(props) {
               src={logo}
               alt="KeeSwap logo"
               className="main-header-navbar__logo"
-              style={{ width: 220 }}
+              style={{ width: 120 }}
             />
             <ul className="main-header-navbar__nav">
               <li className="main-header-navbar__nav__item">
@@ -266,19 +271,18 @@ function HomePage(props) {
                 </a>
               </li>
               <li className="main-header-navbar__nav__item">
-                <a
-                  onClick={() => {
-                    naviagte("/staking");
-                  }}
-                  className="main-header-navbar__nav__link"
-                  style={{ cursor: "pointer" }}
-                >
-                  Staking
+                <a href="#roadmap" className="main-header-navbar__nav__link">
+                  Roadmap
                 </a>
               </li>
               <li className="main-header-navbar__nav__item">
-                <a href="#roadmap" className="main-header-navbar__nav__link">
-                  Roadmap
+                <a
+                  className="main-header-navbar__nav__link"
+                  onClick={() => {
+                    navigate("/staking");
+                  }}
+                >
+                  Staking
                 </a>
               </li>
               {connect ? (
@@ -358,7 +362,7 @@ function HomePage(props) {
                   fontWeight: "bold",
                 }}
                 onClick={() => {
-                  naviagte("/airdrop");
+                  navigate("/airdrop");
                 }}
               >
                 AirDrop
@@ -419,106 +423,131 @@ function HomePage(props) {
               )}
               {!sale ? (
                 <>
-                  <div className="flexDiv">
-                    <div>
-                      <h3
-                        className="why-us-section__content__title"
-                        style={{ textAlign: "center", color: "black" }}
-                      >
-                        Buy Vaulty
-                      </h3>
-                      <div style={{ display: "flex", alignItems: "center" }}>
-                        <input
-                          type="text"
-                          onChange={handleChange}
-                          placeholder="Enter Amount To Buy"
-                          style={{
-                            padding: 8,
-                            marginTop: 10,
-                            width: "100%",
-                            color: "black",
-                          }}
-                          value={token}
-                          disabled={inputDisable}
-                        />
-                        <div
-                          style={{
-                            padding: 5,
-                            border: "1px solid black",
-                            width: "85px",
-                            justifyContent: "space-around",
-                            marginTop: "10px",
-                            borderRadius: 7,
-                            marginLeft: 8,
-                            display: "flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          <img src={bnb} width="20" />
-                          <div>BUSD</div>
-                        </div>
-                      </div>
-
-                      <span>
-                        <p style={{ color: "red" }}>{error}</p>
-                      </span>
-                      <div style={{ display: "flex", alignItems: "center" }}>
-                        <input
-                          type="text"
-                          placeholder={`${kees} $VLT`}
-                          style={{
-                            padding: 10,
-                            marginTop: 10,
-                            width: "100%",
-                            background: "white",
-                          }}
-                          disabled
-                        />
-                        <div
-                          style={{
-                            padding: 5,
-                            border: "1px solid black",
-                            width: "85px",
-                            justifyContent: "space-around",
-                            marginTop: "10px",
-                            borderRadius: 7,
-                            marginLeft: 8,
-                            display: "flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          <img src={keeToken} width="20" />
-                          <div>$VLT</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flexDivBtn">
-                      <button
-                        className="why-us-section__content__btn"
-                        onClick={handleApprove}
-                        disabled={token == "" || isApproved == false}
-                      >
-                        <div
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-around",
-                          }}
-                        >
-                          {spinnerAppr ? (
-                            <Spinner
-                              name="circle"
-                              style={{ width: 30, height: 30 }}
+                  {whitelisted ? (
+                    <>
+                      <div className="flexDiv">
+                        <div>
+                          <h3
+                            className="why-us-section__content__title"
+                            style={{ textAlign: "center", color: "black" }}
+                          >
+                            Buy Vaulty
+                          </h3>
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
+                            <input
+                              type="text"
+                              onChange={handleChange}
+                              placeholder="Enter Amount To Buy"
+                              style={{
+                                padding: 8,
+                                marginTop: 10,
+                                width: "100%",
+                                color: "black",
+                              }}
+                              value={token}
+                              disabled={inputDisable}
                             />
-                          ) : (
-                            <>Approve</>
-                          )}
+                            <div
+                              style={{
+                                padding: 5,
+                                border: "1px solid black",
+                                width: "85px",
+                                justifyContent: "space-around",
+                                marginTop: "10px",
+                                borderRadius: 7,
+                                marginLeft: 8,
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              <img src={bnb} width="20" />
+                              <div>BUSD</div>
+                            </div>
+                          </div>
+
+                          <span>
+                            <p style={{ color: "red" }}>{error}</p>
+                          </span>
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
+                            <input
+                              type="text"
+                              placeholder={`${kees} $VLT`}
+                              style={{
+                                padding: 10,
+                                marginTop: 10,
+                                width: "100%",
+                                background: "white",
+                              }}
+                              disabled
+                            />
+                            <div
+                              style={{
+                                padding: 5,
+                                border: "1px solid black",
+                                width: "85px",
+                                justifyContent: "space-around",
+                                marginTop: "10px",
+                                borderRadius: 7,
+                                marginLeft: 8,
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              <img src={keeToken} width="20" />
+                              <div>$VLT</div>
+                            </div>
+                          </div>
                         </div>
-                      </button>
-                      <button
+
+                        <div className="flexDivBtn">
+                          <button
+                            className="why-us-section__content__btn"
+                            onClick={handleApprove}
+                            disabled={token == "" || isApproved == false}
+                          >
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-around",
+                              }}
+                            >
+                              {spinnerAppr ? (
+                                <Spinner
+                                  name="circle"
+                                  style={{ width: 30, height: 30 }}
+                                />
+                              ) : (
+                                <>Approve</>
+                              )}
+                            </div>
+                          </button>
+                          <button
+                            className="why-us-section__content__btn"
+                            onClick={handleBuy}
+                            disabled={isApproved || isApprovedBuy}
+                          >
+                            {spinnerBuy ? (
+                              <Spinner
+                                name="circle"
+                                style={{ width: 30, height: 30 }}
+                              />
+                            ) : (
+                              <>Buy</>
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <a
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSfrh5crFbB1uHoNIrcdRhvVGvd9zSL-RbrH6C9djURT2Ba9Gg/viewform?usp=sf_link"
                         className="why-us-section__content__btn"
-                        onClick={handleBuy}
-                        disabled={isApproved || isApprovedBuy}
+                        target="_blank"
                       >
                         {spinnerBuy ? (
                           <Spinner
@@ -526,11 +555,11 @@ function HomePage(props) {
                             style={{ width: 30, height: 30 }}
                           />
                         ) : (
-                          <>Buy</>
+                          <>Add To Whitelist</>
                         )}
-                      </button>
-                    </div>
-                  </div>
+                      </a>
+                    </>
+                  )}
                 </>
               ) : (
                 <>
@@ -922,7 +951,7 @@ function HomePage(props) {
               className="copy-and-social__copy"
               style={{ color: "aliceblue" }}
             >
-              ©2022 Vaulty. All rights reserved
+              ©2022 Valuty. All rights reserved
             </h3>
             <div className="social-icons">
               <i className="fab fa-facebook-f" />
