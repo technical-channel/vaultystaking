@@ -3,19 +3,27 @@
 import React from "react";
 import moment from "moment";
 
-import logo from "./assets/vaulty.png";
+import logo from "./assets/logo.svg";
 import bgImg from "./assets/ilustrator.png";
 import { useNavigate } from "react-router-dom";
 import cardicon1 from "./assets/cardicon1.png";
 import cardicon2 from "./assets/cardicon2.png";
 import cardicon3 from "./assets/cardicon3.png";
+import pancakeswap from "./assets/pancakesswap.png";
 import side1 from "./assets/side1.png";
 import side2 from "./assets/side2.png";
 import bnb from "./assets/binance.png";
+import RoadmapPc from "./assets/roadmap-01.svg";
+import RoadmapMobile from "./assets/roadmap-02.svg";
 import keeToken from "./assets/keetoken.png";
 import side3 from "./assets/side3.png";
 import Swal from "sweetalert2";
 import bgImg2 from "./assets/banner_vector3.png";
+import CoinMoon from "./assets/coinmooner.png";
+import CoinGecko from "./assets/coingekco.png";
+import Coinod from "./assets/Coinsgods.png";
+import CoinScope from "./assets/coinscope.png";
+import CoinMarket from "./assets/Coinmarketcap01.png";
 import { connect } from "react-redux";
 import { ConnectMetamask, DisconnectWallet, web3_ } from "./Services/index";
 import { ConnectWeb3Wallet } from "./Services";
@@ -65,7 +73,7 @@ function HomePage(props) {
       } else {
         let contract = await new web3_.eth.Contract(icoAbi, ico).methods;
         const res = await contract.getTokenomics().call();
-
+        setConnect(true);
         const whitelisted = await contract
           .verifyUser(props.metamaskAddress)
           .call();
@@ -98,18 +106,18 @@ function HomePage(props) {
       setIsApprovedBuy(true);
     }
   }
-  async function handleWhitelist() {
-    console.log("yessss");
-    await new web3_.eth.Contract(icoAbi, ico).methods
-      .addUserLIST(props.metamaskAddress)
-      .send({ from: props.metamaskAddress })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
+  // async function handleWhitelist() {
+  //   console.log("yessss");
+  //   await new web3_.eth.Contract(icoAbi, ico).methods
+  //     .addUserLIST(props.metamaskAddress)
+  //     .send({ from: props.metamaskAddress })
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
   async function handleChange(e) {
     function isNumeric(n) {
       return !isNaN(parseFloat(n)) && isFinite(n);
@@ -118,7 +126,6 @@ function HomePage(props) {
       setError("");
       setToken(e.target.value);
 
-      console.log(details[2] / Math.pow(10, 18));
       setKees(
         e.target.value / parseFloat(details[2] / Math.pow(10, 18)).toFixed(4)
       );
@@ -138,57 +145,66 @@ function HomePage(props) {
       setIsApproved(true);
       setIsApprovedBuy(true);
     } else {
-      setSpinnerAppr(true);
-      let res = await new web3_.eth.Contract(busdAbi, busdContract).methods
-        .balanceOf(props.metamaskAddress)
-        .call();
-
-      console.log(res / Math.pow(10, 18), token);
-      let addAppr = store.getState().ConnectivityReducer.metamaskAddress;
-      setAddAppr(addAppr);
-
-      const tkn = web3_.utils.toWei(token.toString(), "ether");
-
-      console.log(res / Math.pow(10, 18) < parseFloat(token));
-      if (res / Math.pow(10, 18) > parseFloat(token)) {
-        await new web3_.eth.Contract(busdAbi, busdContract).methods
-          .approve(ico, tkn)
-          .send({
-            from: props.metamaskAddress,
-          })
-          .on("transactionHash", function (transactionHash) {
-            console.log(transactionHash);
-          })
-          .on("confirmation", () => {})
-          // get New Contract Address
-          .then(async (res) => {
-            Swal.fire("Transaction Successful", "", "success");
-            setIsApproved(false);
-            setInputDisable(true);
-            setSpinnerAppr(false);
-            setIsApprovedBuy(false);
-          })
-          .catch((err) => {
-            console.log(err);
-            Swal.fire(
-              "Transaction Failed",
-              "Please Try After Some Time",
-              "error"
-            );
-            setToken("");
-            setKees("");
-            setIsApproved(true);
-            setSpinnerAppr(false);
-          });
-      } else {
-        Swal.fire(
-          `Please Enter Atleast ${token} BUSD In Your Account To Intiate This Transaction.`
-        );
+      if (token === "0") {
+        setError("Please Enter Value Greater Then 0");
+        setToken("");
         setToken("");
         setKees("");
         setIsApproved(true);
         setIsApprovedBuy(true);
-        setSpinnerAppr(false);
+      } else {
+        setSpinnerAppr(true);
+        let res = await new web3_.eth.Contract(busdAbi, busdContract).methods
+          .balanceOf(props.metamaskAddress)
+          .call();
+
+        console.log(res / Math.pow(10, 18), token);
+        let addAppr = store.getState().ConnectivityReducer.metamaskAddress;
+        setAddAppr(addAppr);
+
+        const tkn = web3_.utils.toWei(token.toString(), "ether");
+
+        console.log(res / Math.pow(10, 18) < parseFloat(token));
+        if (res / Math.pow(10, 18) > parseFloat(token)) {
+          await new web3_.eth.Contract(busdAbi, busdContract).methods
+            .approve(ico, tkn)
+            .send({
+              from: props.metamaskAddress,
+            })
+            .on("transactionHash", function (transactionHash) {
+              console.log(transactionHash);
+            })
+            .on("confirmation", () => {})
+            // get New Contract Address
+            .then(async (res) => {
+              Swal.fire("Transaction Successful", "", "success");
+              setIsApproved(false);
+              setInputDisable(true);
+              setSpinnerAppr(false);
+              setIsApprovedBuy(false);
+            })
+            .catch((err) => {
+              console.log(err);
+              Swal.fire(
+                "Transaction Failed",
+                "Please Try After Some Time",
+                "error"
+              );
+              setToken("");
+              setKees("");
+              setIsApproved(true);
+              setSpinnerAppr(false);
+            });
+        } else {
+          Swal.fire(
+            `Please Enter Atleast ${token} BUSD In Your Account To Intiate This Transaction.`
+          );
+          setToken("");
+          setKees("");
+          setIsApproved(true);
+          setIsApprovedBuy(true);
+          setSpinnerAppr(false);
+        }
       }
     }
   }
@@ -521,41 +537,49 @@ function HomePage(props) {
                         </div>
 
                         <div className="flexDivBtn">
-                          <button
-                            className="glow-on-hover"
-                            onClick={handleApprove}
-                            disabled={token == "" || isApproved == false}
-                          >
-                            <div
-                              style={{
-                                display: "flex",
-                                justifyContent: "space-around",
-                              }}
-                            >
-                              {spinnerAppr ? (
-                                <Spinner
-                                  name="circle"
-                                  style={{ width: 30, height: 30 }}
-                                />
-                              ) : (
-                                <>Approve</>
-                              )}
-                            </div>
-                          </button>
-                          <button
-                            className="glow-on-hover"
-                            onClick={handleBuy}
-                            disabled={isApproved || isApprovedBuy}
-                          >
-                            {spinnerBuy ? (
-                              <Spinner
-                                name="circle"
-                                style={{ width: 30, height: 30 }}
-                              />
-                            ) : (
-                              <>Buy</>
-                            )}
-                          </button>
+                          {isApproved ? (
+                            <>
+                              {" "}
+                              <button
+                                className="glow-on-hover"
+                                onClick={handleApprove}
+                                disabled={token == "" || isApproved == false}
+                              >
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-around",
+                                  }}
+                                >
+                                  {spinnerAppr ? (
+                                    <Spinner
+                                      name="circle"
+                                      style={{ width: 30, height: 30 }}
+                                    />
+                                  ) : (
+                                    <>Approve</>
+                                  )}
+                                </div>
+                              </button>
+                            </>
+                          ) : (
+                            <>
+                              <button
+                                className="glow-on-hover"
+                                onClick={handleBuy}
+                                disabled={isApproved || isApprovedBuy}
+                              >
+                                {spinnerBuy ? (
+                                  <Spinner
+                                    name="circle"
+                                    style={{ width: 30, height: 30 }}
+                                  />
+                                ) : (
+                                  <>Buy</>
+                                )}
+                              </button>
+                            </>
+                          )}
                         </div>
                       </div>
                     </>
@@ -832,25 +856,15 @@ function HomePage(props) {
               padding: 60,
             }}
           >
-            <img
-              src="https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_1.svg?_=fc54f8a"
-              className="socialWidth"
-            />
+            <img src={CoinGecko} className="socialWidth" />
 
-            <img
-              src="https://static.coingecko.com/s/coingecko-logo-63f24b60e1d2d526c141fee733ad2a39fbce7dabedd187a0dba95220396ce9a0.png"
-              className="socialWidth"
-            />
+            <img src={CoinMoon} className="socialWidth" />
 
-            <img
-              src="https://www.pngall.com/wp-content/uploads/10/PancakeSwap-Crypto-Logo-PNG-File.png"
-              className="socialWidth"
-            />
+            <img src={CoinScope} className="socialWidth" />
 
-            <img
-              src="https://www.pngall.com/wp-content/uploads/10/PancakeSwap-Crypto-Logo-PNG-File.png"
-              className="socialWidth"
-            />
+            <img src={Coinod} className="socialWidth" />
+            <img src={CoinMarket} className="socialWidth" />
+            <img src={pancakeswap} className="socialWidth" />
           </div>
         </section>
       </main>
@@ -867,40 +881,8 @@ function HomePage(props) {
         Roadmap
       </h2>
       <section id="roadmap">
-        <div className="timeline">
-          <div className="outer">
-            <div className="card">
-              <div className="info">
-                <h3 className="title">Foundation</h3>
-                <p className="paddingCls">
-                  <ul>
-                    <li>
-                      Organizational Business Leaders are aligned for
-                      improvement
-                    </li>
-                    <li>Elaborate Business identity</li>
-                    <li>Build case for business change</li>
-                    <li>Set Parameters to drive growth</li>
-                    <li>Determine requirements for growth</li>
-                  </ul>
-                </p>
-              </div>
-            </div>
-            <div className="card">
-              <div className="info">
-                <h3 className="title" style={{ textAlign: "left" }}>
-                  Focus
-                </h3>
-                <p className="paddingCls">
-                  <ul>
-                    <li>Set Expectation and Found right resources</li>
-                    <li>Determine events require to achieve future goals</li>
-                  </ul>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <img src={RoadmapPc} className="widthCls" />
+        <img src={RoadmapMobile} className="widthClsMobile" />
       </section>
 
       {/* Main footer */}
@@ -971,11 +953,16 @@ function HomePage(props) {
               ©2022 Valuty. All rights reserved
             </h3>
             <div className="social-icons">
-              <i className="fab fa-facebook-f" />
-              <i className="fab fa-instagram" />
-              <i className="fab fa-youtube" />
-              <i className="fab fa-twitter" />
-              <i className="fab fa-linkedin-in" />
+              <a href="https://www.facebook.com/VaultyPRO" target="_blank">
+                <i className="fab fa-facebook-f" />
+              </a>
+              <a href="https://www.instagram.com/vaultypro/" target="_blank">
+                <i className="fab fa-instagram" />
+              </a>
+
+              <a href="https://twitter.com/VaultyPRO" target="_blank">
+                <i className="fab fa-twitter" width="150" />
+              </a>
             </div>
           </div>
         </div>

@@ -23,7 +23,7 @@ function Staking(props) {
   const [Month, setMonth] = useState(0);
   const [Approval, setApproval] = useState(false);
   const [IsAlreadyStake, setIsAlreadyStake] = useState(false);
-  const [UserData, setUserData] = useState("");
+  const [UserData, setUserData] = useState(0);
   const [UserBalance, setUserBalance] = useState(0);
   const [TotalStaked, setTotalStaked] = useState(0);
 
@@ -155,7 +155,7 @@ function Staking(props) {
               console.log("Transaction Possible");
               await tokenApprove(staking, tkn)
                 .then((res) => {
-                  Swal.fire("success", "Stake Seccessfully", "success");
+                  Swal.fire("success", "Approve Seccessfully", "success");
                   setApproval(true);
                 })
                 .catch((error) => {
@@ -167,7 +167,7 @@ function Staking(props) {
           } else {
             Swal.fire(
               "Warning",
-              "User Does not have sucffiant Fund",
+              "User Does Not Have Sufficent Balance",
               "warning"
             );
           }
@@ -300,7 +300,7 @@ function Staking(props) {
             </header>
 
             <div class="login-box">
-              <h2>Choose a staking duration</h2>
+              <h2 style={{ fontSize: 22 }}>Choose A Staking Duration</h2>
               <div
                 style={{
                   display: "flex",
@@ -390,6 +390,7 @@ function Staking(props) {
                     type="number"
                     min={1}
                     name
+                    placeholder={"Enter Amount"}
                     required
                     value={Number}
                     onChange={(e) => {
@@ -403,7 +404,6 @@ function Staking(props) {
                     }}
                     style={{ margin: 10 }}
                   />
-                  <label>Enter Amount </label>
                 </div>
 
                 <div
@@ -415,7 +415,7 @@ function Staking(props) {
                   <div>
                     <p className="cardFont">
                       {" "}
-                      {UserData.apy / Math.pow(10, 9)} %
+                      {UserData && UserData.apy / Math.pow(10, 9)} %
                     </p>
                   </div>
                 </div>
@@ -429,7 +429,7 @@ function Staking(props) {
                   <div>
                     <p className="cardFont">
                       {" "}
-                      {UserData.stackAmount / Math.pow(10, 9)} $VLT
+                      {UserData && UserData.stackAmount / Math.pow(10, 9)} $VLT
                     </p>
                   </div>
                 </div>
@@ -447,7 +447,7 @@ function Staking(props) {
                   <div>
                     <p className="cardFont">
                       {" "}
-                      {UserBalance / Math.pow(10, 9)} $VLT
+                      {UserBalance && UserBalance / Math.pow(10, 9)} $VLT
                     </p>
                   </div>
                 </div>
@@ -512,7 +512,7 @@ function Staking(props) {
               </form>
             </div>
             <div class="login-box">
-              <h2>APY Percentage</h2>
+              <h2 style={{ fontSize: 22 }}>APY Percentage</h2>
               <div
                 style={{
                   display: "flex",

@@ -254,10 +254,14 @@ function Airdrop(props) {
                       fontWeight: "bold",
                     }}
                     onClick={() => {
-                      setTask(task + 1);
+                      setSelectedMonth({ ...selectedMonth, one: true });
                     }}
                   >
-                    Tweet #Vaultypro #VaultyWallet
+                    {selectedMonth.one ? (
+                      <> Completed </>
+                    ) : (
+                      <>Tweet #Vaultypro #VaultyWallet</>
+                    )}
                   </a>
                 </div>
                 <img
@@ -298,10 +302,14 @@ function Airdrop(props) {
                       fontWeight: "bold",
                     }}
                     onClick={() => {
-                      setTask(task + 1);
+                      setSelectedMonth({ ...selectedMonth, two: true });
                     }}
                   >
-                    Follow On Facebook
+                    {selectedMonth.two ? (
+                      <> Completed </>
+                    ) : (
+                      <> Follow On Facebook</>
+                    )}
                   </a>
                 </div>
               </div>
@@ -332,10 +340,10 @@ function Airdrop(props) {
                       fontWeight: "bold",
                     }}
                     onClick={() => {
-                      setTask(task + 1);
+                      setSelectedMonth({ ...selectedMonth, three: true });
                     }}
                   >
-                    Comment
+                    {selectedMonth.three ? <> Completed </> : <> Comment </>}
                   </a>
                 </div>
                 <img
@@ -346,7 +354,7 @@ function Airdrop(props) {
                 />
               </div>
             </>
-            ) : null}
+            )
             <>
               {" "}
               <div
@@ -378,10 +386,14 @@ function Airdrop(props) {
                       fontWeight: "bold",
                     }}
                     onClick={() => {
-                      setTask(task + 1);
+                      setSelectedMonth({ ...selectedMonth, four: true });
                     }}
                   >
-                    Story Instagram
+                    {selectedMonth.four ? (
+                      <> Completed </>
+                    ) : (
+                      <> Story Instagram</>
+                    )}
                   </a>
                 </div>
               </div>
@@ -412,10 +424,14 @@ function Airdrop(props) {
                       fontWeight: "bold",
                     }}
                     onClick={() => {
-                      setTask(task + 1);
+                      setSelectedMonth({ ...selectedMonth, five: true });
                     }}
                   >
-                    Join Telegram
+                    {selectedMonth.five ? (
+                      <> Completed </>
+                    ) : (
+                      <> Join Telegram</>
+                    )}
                   </a>
                 </div>
                 <img
@@ -427,7 +443,11 @@ function Airdrop(props) {
               </div>
             </>
           </div>
-          {task === 5 ? (
+          {selectedMonth.one &&
+          selectedMonth.two &&
+          selectedMonth.three &&
+          selectedMonth.four &&
+          selectedMonth.five ? (
             <>
               <a
                 className="main-header-navbar__nav__link disconnectButton"
