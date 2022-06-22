@@ -233,7 +233,10 @@ function Airdrop(props) {
                 className="main-header-content-container flexDirRev"
                 style={{ justifyContent: "space-around", margin: 10 }}
               >
-                <div className="main-header-content-principal">
+                <div
+                  className="main-header-content-principal"
+                  style={{ flexDirection: "column" }}
+                >
                   <h1
                     className="main-header-content-principal__title"
                     style={{ fontSize: 18 }}
@@ -289,7 +292,10 @@ function Airdrop(props) {
                   alt
                   className=""
                 />
-                <div className="main-header-content-principal">
+                <div
+                  className="main-header-content-principal"
+                  style={{ flexDirection: "column" }}
+                >
                   <h1
                     className="main-header-content-principal__title"
                     style={{ fontSize: 18 }}
@@ -331,7 +337,10 @@ function Airdrop(props) {
                 className="main-header-content-container flexDirRev"
                 style={{ justifyContent: "space-around" }}
               >
-                <div className="main-header-content-principal">
+                <div
+                  className="main-header-content-principal"
+                  style={{ flexDirection: "column" }}
+                >
                   <h1
                     className="main-header-content-principal__title"
                     style={{ fontSize: 18 }}
@@ -385,7 +394,10 @@ function Airdrop(props) {
                   alt
                   className=""
                 />
-                <div className="main-header-content-principal">
+                <div
+                  className="main-header-content-principal"
+                  style={{ flexDirection: "column" }}
+                >
                   <h1
                     className="main-header-content-principal__title"
                     style={{ fontSize: 18 }}
@@ -427,7 +439,10 @@ function Airdrop(props) {
                 className="main-header-content-container flexDirRev"
                 style={{ justifyContent: "space-around" }}
               >
-                <div className="main-header-content-principal">
+                <div
+                  className="main-header-content-principal"
+                  style={{ flexDirection: "column" }}
+                >
                   <h1
                     className="main-header-content-principal__title"
                     style={{ fontSize: 18 }}
