@@ -15,15 +15,18 @@ import { useNavigate } from "react-router-dom";
 // import logo from "./";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
+import CounterComponent from "../Components/Counter";
 
 function Staking(props) {
   const [connect, setConnect] = useState(false);
   const [isApprovedBuy, setIsApprovedBuy] = useState(true);
   const [Number, setNumber] = useState("");
+  const [maturityDate, setMaturityDate] = useState("");
   const [Month, setMonth] = useState(0);
   const [Approval, setApproval] = useState(false);
   const [IsAlreadyStake, setIsAlreadyStake] = useState(false);
   const [UserData, setUserData] = useState(0);
+  const [apy, setApy] = useState(0);
   const [UserBalance, setUserBalance] = useState(0);
   const [TotalStaked, setTotalStaked] = useState(0);
 
@@ -59,7 +62,13 @@ function Staking(props) {
       ).methods
         .balanceOf(props.metamaskAddress)
         .call();
-
+      let MaturityDate = await new web3_.eth.Contract(
+        StakingABI,
+        staking
+      ).methods
+        .maturityDate(props.metamaskAddress)
+        .call();
+      setMaturityDate(MaturityDate);
       setUserBalance(vaultyBalance);
       let totalStakeAmount = await new web3_.eth.Contract(
         StakingABI,
@@ -73,7 +82,7 @@ function Staking(props) {
     } else {
       setConnect(false);
     }
-  }, [props.metamaskAddress]);
+  }, [props.metamaskAddress, IsAlreadyStake]);
 
   async function doStaking(stakeAmount, stakeDuration) {
     return await new web3_.eth.Contract(StakingABI, staking).methods
@@ -93,7 +102,7 @@ function Staking(props) {
         const tkn = web3_.utils.toWei(Number.toString(), "Gwei");
         const output = await doStaking(tkn, Month)
           .then((res) => {
-            Swal.fire("Sucess", "Staking Sucessfully", "success");
+            Swal.fire("Success", "Staking Successfully", "success");
           })
           .catch((e) => {
             Swal.fire("error", "Please Try Again", "error");
@@ -119,6 +128,7 @@ function Staking(props) {
         .catch((e) => {
           Swal.fire("error", "Please Try Again", "error");
           console.log(e);
+          setIsAlreadyStake(true);
         });
     } else {
       Swal.fire("Warning", "Please Connect to the Wallet First", "warning");
@@ -155,7 +165,7 @@ function Staking(props) {
               console.log("Transaction Possible");
               await tokenApprove(staking, tkn)
                 .then((res) => {
-                  Swal.fire("success", "Approve Seccessfully", "success");
+                  Swal.fire("Success", "Approve Succesfull", "success");
                   setApproval(true);
                 })
                 .catch((error) => {
@@ -167,7 +177,7 @@ function Staking(props) {
           } else {
             Swal.fire(
               "Warning",
-              "User Does Not Have Sufficent Balance",
+              "User Does Not Have Sufficent Vaulty Tokens",
               "warning"
             );
           }
@@ -257,6 +267,7 @@ function Staking(props) {
                             className="main-header-navbar__nav__link disconnectButton"
                             onClick={() => {
                               setConnect(false);
+                              DisconnectWallet();
                             }}
                           >
                             <span
@@ -300,7 +311,7 @@ function Staking(props) {
             </header>
 
             <div class="login-box">
-              <h2 style={{ fontSize: 22 }}>Choose A Staking Duration</h2>
+              <h2 style={{ fontSize: 22 }}>Choose Staking Duration</h2>
               <div
                 style={{
                   display: "flex",
@@ -320,6 +331,7 @@ function Staking(props) {
                         three: false,
                         four: false,
                       });
+                      setApy(2);
                     }}
                     disabled={selectedMonth.one}
                   >
@@ -331,6 +343,7 @@ function Staking(props) {
                     className="btnStake"
                     onClick={() => {
                       setMonth(2);
+                      setApy(5);
                       setSelectedMonth({
                         one: false,
                         two: true,
@@ -348,6 +361,7 @@ function Staking(props) {
                     className="btnStake"
                     onClick={() => {
                       setMonth(3);
+                      setApy(20);
                       setSelectedMonth({
                         one: false,
                         two: false,
@@ -365,6 +379,7 @@ function Staking(props) {
                     className="btnStake"
                     onClick={() => {
                       setMonth(4);
+                      setApy(50);
                       setSelectedMonth({
                         one: false,
                         two: false,
@@ -413,10 +428,7 @@ function Staking(props) {
                     <p className="cardFont">APY</p>
                   </div>
                   <div>
-                    <p className="cardFont">
-                      {" "}
-                      {UserData && UserData.apy / Math.pow(10, 9)} %
-                    </p>
+                    <p className="cardFont"> {apy} %</p>
                   </div>
                 </div>
 
@@ -447,7 +459,11 @@ function Staking(props) {
                   <div>
                     <p className="cardFont">
                       {" "}
-                      {UserBalance && UserBalance / Math.pow(10, 9)} $VLT
+                      {UserBalance &&
+                        parseFloat(UserBalance / Math.pow(10, 9)).toFixed(
+                          3
+                        )}{" "}
+                      $VLT
                     </p>
                   </div>
                 </div>
@@ -465,6 +481,19 @@ function Staking(props) {
                     </p>
                   </div>
                 </div>
+                {maturityDate == 0 ? null : (
+                  <>
+                    <h1>Maturity Time</h1>
+
+                    <CounterComponent endDate={maturityDate} />
+                    <p className="cardFont">
+                      *Complete Maturity Time To Get Rewards.
+                      <br />
+                      *Pay Penelty If Unstaked Earlier.
+                    </p>
+                  </>
+                )}
+
                 {!IsAlreadyStake ? (
                   <>
                     {" "}
@@ -509,74 +538,6 @@ function Staking(props) {
                     </a>
                   </>
                 )}
-              </form>
-            </div>
-            <div class="login-box">
-              <h2 style={{ fontSize: 22 }}>APY Percentage</h2>
-              <div
-                style={{
-                  display: "flex",
-                  margin: "10 -5px",
-
-                  justifyContent: "space-around",
-                }}
-              ></div>
-
-              <form>
-                <div
-                  className="user-box"
-                  style={{
-                    margin: "5px",
-                  }}
-                ></div>
-
-                <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <div>
-                    <p className="cardFont">30 DAYS</p>
-                  </div>
-                  <div>
-                    <p className="cardFont">2%</p>
-                  </div>
-                </div>
-
-                <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <div>
-                    <p className="cardFont">90 DAYS</p>
-                  </div>
-                  <div>
-                    <p className="cardFont">5%</p>
-                  </div>
-                </div>
-
-                <div
-                  className="flexClass"
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <div>
-                    <p className="cardFont">180 DAYS</p>
-                  </div>
-                  <div>
-                    <p className="cardFont">20%</p>
-                  </div>
-                </div>
-
-                <div
-                  style={{ display: "flex", justifyContent: "space-between" }}
-                >
-                  <div>
-                    <p className="cardFont">365 DAYS</p>
-                  </div>
-                  <div>
-                    <p className="cardFont">50%</p>
-                  </div>
-                </div>
               </form>
             </div>
           </div>

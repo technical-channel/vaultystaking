@@ -102,7 +102,6 @@ function HomePage(props) {
       DisconnectWallet();
       await ConnectWeb3Wallet();
 
-      setConnect(true);
       setIsApprovedBuy(true);
     }
   }
@@ -265,7 +264,7 @@ function HomePage(props) {
               src={logo}
               alt="KeeSwap logo"
               className="main-header-navbar__logo"
-              style={{ width: 120 }}
+              style={{ width: 220 }}
             />
             <ul className="main-header-navbar__nav">
               <li className="main-header-navbar__nav__item">
@@ -274,12 +273,12 @@ function HomePage(props) {
                 </a>
               </li>
               <li className="main-header-navbar__nav__item">
-                <a href="#about" className="main-header-navbar__nav__link">
+                <a href="#buy" className="main-header-navbar__nav__link">
                   Buy
                 </a>
               </li>
               <li className="main-header-navbar__nav__item">
-                <a href="#features" className="main-header-navbar__nav__link">
+                <a href="#values" className="main-header-navbar__nav__link">
                   Values
                 </a>
               </li>
@@ -296,6 +295,7 @@ function HomePage(props) {
               <li className="main-header-navbar__nav__item">
                 <a
                   className="main-header-navbar__nav__link"
+                  style={{ cursor: "pointer" }}
                   onClick={() => {
                     navigate("/staking");
                   }}
@@ -324,6 +324,7 @@ function HomePage(props) {
                       className="main-header-navbar__nav__link disconnectButton"
                       onClick={() => {
                         setConnect(false);
+                        DisconnectWallet();
                       }}
                     >
                       <span
@@ -332,6 +333,7 @@ function HomePage(props) {
                           border: "1px solid green",
                           padding: 5,
                           color: "green",
+                          cursor: "pointer",
                         }}
                       >
                         Disconnect
@@ -368,23 +370,14 @@ function HomePage(props) {
               <p className="main-header-content-principal__description typewriter">
                 Buy cryptocurrencies, trusted by various users.
               </p>
-              <a
-                className="main-header-navbar__nav__link disconnectButton"
-                style={{
-                  borderRadius: "50px",
-                  border: "2px solid green",
-                  padding: 10,
-                  color: "green",
-                  cursor: "pointer",
-                  fontSize: "20px",
-                  fontWeight: "bold",
-                }}
+              <button
+                className="glow-on-hover"
                 onClick={() => {
                   navigate("/airdrop");
                 }}
               >
-                AirDrop
-              </a>
+                Airdrop
+              </button>
             </div>
             <img
               src={bgImg}
@@ -418,7 +411,7 @@ function HomePage(props) {
             </div>
           </div>
           {/* Why us */}
-          <div className="why-us-section" id="about">
+          <div className="why-us-section" id="buy">
             <div className="why-us-section__content">
               <h2 className="why-us-section__content__title">
                 Why you should choose
@@ -439,173 +432,189 @@ function HomePage(props) {
                 details &&
                   details[3] < Math.floor(new Date().getTime() / 1000.0)
               )}
-              {!sale ? (
+              {connect ? (
                 <>
-                  {whitelisted ? (
+                  {!sale ? (
                     <>
-                      <div
-                        className="flexDiv"
-                        style={{
-                          background: "white",
-                          maxWidth: "400px",
-                          backgroundColor: "#fff",
-                          color: "#000",
-                          borderRadius: "10px",
-                          padding: "25px 15px",
-                          textAlign: "justify",
-                        }}
-                      >
-                        <div>
-                          <h3
-                            className="why-us-section__content__title"
-                            style={{ textAlign: "center", color: "black" }}
-                          >
-                            Buy Vaulty
-                          </h3>
+                      {whitelisted ? (
+                        <>
                           <div
-                            style={{ display: "flex", alignItems: "center" }}
+                            className="flexDiv"
+                            style={{
+                              background: "white",
+                              maxWidth: "400px",
+                              backgroundColor: "#fff",
+                              color: "#000",
+                              borderRadius: "10px",
+                              padding: "25px 15px",
+                              textAlign: "justify",
+                            }}
                           >
-                            <input
-                              type="text"
-                              onChange={handleChange}
-                              placeholder="Enter Amount To Buy"
-                              style={{
-                                padding: 8,
-                                marginTop: 10,
-                                width: "100%",
-                                border: "2px solid black !important",
-                                backgroundColor: "#e9ecef",
-                                borderRadius: 5,
-                                fontSize: 14,
-                              }}
-                              value={token}
-                              disabled={inputDisable}
-                            />
-                            <div
-                              style={{
-                                padding: 5,
-                                border: "1px solid black",
-                                width: "85px",
-                                justifyContent: "space-around",
-                                marginTop: "10px",
-                                backgroundColor: "#e9ecef",
-                                borderRadius: 7,
-                                marginLeft: 8,
-                                fontSize: 14,
-                                display: "flex",
-                                alignItems: "center",
-                              }}
-                            >
-                              <img src={bnb} width="20" />
-                              <div>BUSD</div>
-                            </div>
-                          </div>
-
-                          <span>
-                            <p style={{ color: "red" }}>{error}</p>
-                          </span>
-                          <div
-                            style={{ display: "flex", alignItems: "center" }}
-                          >
-                            <input
-                              type="text"
-                              placeholder={`${kees} $VLT`}
-                              style={{
-                                padding: 10,
-                                marginTop: 10,
-                                width: "100%",
-                              }}
-                              disabled
-                            />
-                            <div
-                              style={{
-                                padding: 5,
-                                border: "1px solid black",
-                                width: "85px",
-                                justifyContent: "space-around",
-                                marginTop: "10px",
-                                borderRadius: 7,
-                                marginLeft: 8,
-                                display: "flex",
-                                alignItems: "center",
-                              }}
-                            >
-                              <img src={keeToken} width="20" />
-                              <div>$VLT</div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="flexDivBtn">
-                          {isApproved ? (
-                            <>
-                              {" "}
-                              <button
-                                className="glow-on-hover"
-                                onClick={handleApprove}
-                                disabled={token == "" || isApproved == false}
+                            <div>
+                              <h3
+                                className="why-us-section__content__title"
+                                style={{ textAlign: "center", color: "black" }}
                               >
+                                Buy Vaulty
+                              </h3>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                }}
+                              >
+                                <input
+                                  type="text"
+                                  onChange={handleChange}
+                                  placeholder="Enter Amount To Buy"
+                                  style={{
+                                    padding: 8,
+                                    marginTop: 10,
+                                    width: "100%",
+                                    border: "2px solid black !important",
+                                    backgroundColor: "#e9ecef",
+                                    borderRadius: 5,
+                                    fontSize: 14,
+                                  }}
+                                  value={token}
+                                  disabled={inputDisable}
+                                />
                                 <div
                                   style={{
-                                    display: "flex",
+                                    padding: 5,
+                                    border: "1px solid black",
+                                    width: "85px",
                                     justifyContent: "space-around",
+                                    marginTop: "10px",
+                                    backgroundColor: "#e9ecef",
+                                    borderRadius: 7,
+                                    marginLeft: 8,
+                                    fontSize: 14,
+                                    display: "flex",
+                                    alignItems: "center",
                                   }}
                                 >
-                                  {spinnerAppr ? (
-                                    <Spinner
-                                      name="circle"
-                                      style={{ width: 30, height: 30 }}
-                                    />
-                                  ) : (
-                                    <>Approve</>
-                                  )}
+                                  <img src={bnb} width="20" />
+                                  <div>BUSD</div>
                                 </div>
-                              </button>
-                            </>
-                          ) : (
-                            <>
-                              <button
-                                className="glow-on-hover"
-                                onClick={handleBuy}
-                                disabled={isApproved || isApprovedBuy}
+                              </div>
+
+                              <span>
+                                <p style={{ color: "red" }}>{error}</p>
+                              </span>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                }}
                               >
-                                {spinnerBuy ? (
-                                  <Spinner
-                                    name="circle"
-                                    style={{ width: 30, height: 30 }}
-                                  />
-                                ) : (
-                                  <>Buy</>
-                                )}
-                              </button>
-                            </>
-                          )}
-                        </div>
-                      </div>
+                                <input
+                                  type="text"
+                                  placeholder={`${kees} $VLT`}
+                                  style={{
+                                    padding: 10,
+                                    marginTop: 10,
+                                    fontSize: 15,
+                                    width: "100%",
+                                  }}
+                                  disabled
+                                />
+                                <div
+                                  style={{
+                                    padding: 5,
+                                    border: "1px solid black",
+                                    width: "85px",
+                                    justifyContent: "space-around",
+                                    marginTop: "10px",
+                                    borderRadius: 7,
+                                    marginLeft: 8,
+                                    fontSize: 14,
+                                    display: "flex",
+                                    alignItems: "center",
+                                  }}
+                                >
+                                  <img src={keeToken} width="20" />
+                                  <div>$VLT</div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="flexDivBtn">
+                              {isApproved ? (
+                                <>
+                                  {" "}
+                                  <button
+                                    className="glow-on-hover"
+                                    onClick={handleApprove}
+                                    disabled={
+                                      token == "" || isApproved == false
+                                    }
+                                  >
+                                    <div
+                                      style={{
+                                        display: "flex",
+                                        justifyContent: "space-around",
+                                      }}
+                                    >
+                                      {spinnerAppr ? (
+                                        <Spinner
+                                          name="circle"
+                                          style={{ width: 30, height: 30 }}
+                                        />
+                                      ) : (
+                                        <>Approve</>
+                                      )}
+                                    </div>
+                                  </button>
+                                </>
+                              ) : (
+                                <>
+                                  <button
+                                    className="glow-on-hover"
+                                    onClick={handleBuy}
+                                    disabled={isApproved || isApprovedBuy}
+                                  >
+                                    {spinnerBuy ? (
+                                      <Spinner
+                                        name="circle"
+                                        style={{ width: 30, height: 30 }}
+                                      />
+                                    ) : (
+                                      <>Buy</>
+                                    )}
+                                  </button>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <a
+                            href="https://docs.google.com/forms/d/e/1FAIpQLSfrh5crFbB1uHoNIrcdRhvVGvd9zSL-RbrH6C9djURT2Ba9Gg/viewform?usp=sf_link"
+                            className="why-us-section__content__btn"
+                            target="_blank"
+                          >
+                            {spinnerBuy ? (
+                              <Spinner
+                                name="circle"
+                                style={{ width: 30, height: 30 }}
+                              />
+                            ) : (
+                              <>Add To Whitelist</>
+                            )}
+                          </a>
+                        </>
+                      )}
                     </>
                   ) : (
                     <>
-                      <a
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSfrh5crFbB1uHoNIrcdRhvVGvd9zSL-RbrH6C9djURT2Ba9Gg/viewform?usp=sf_link"
-                        className="why-us-section__content__btn"
-                        target="_blank"
-                      >
-                        {spinnerBuy ? (
-                          <Spinner
-                            name="circle"
-                            style={{ width: 30, height: 30 }}
-                          />
-                        ) : (
-                          <>Add To Whitelist</>
-                        )}
-                      </a>
+                      <h2>ICO Is Over You Can Not Invest</h2>
                     </>
                   )}
                 </>
               ) : (
-                <>
-                  <h1>ICO Is Over You Can Not Invest</h1>
-                </>
+                <h2>Please Connect Wallet</h2>
               )}
             </div>
             <img
@@ -746,7 +755,7 @@ function HomePage(props) {
           </div>
         </section>
         {/* Features section */}
-        <section className="features-section" id="features">
+        <section className="features-section" id="values">
           <h2 className="features-section__title">Our Core Values</h2>
           <article className="invest-smart-article">
             <div className="invest-smart-article__content">
@@ -869,24 +878,14 @@ function HomePage(props) {
         </section>
       </main>
       {/* Call To Action */}
-      <h2
-        className="features-section__title"
-        style={{
-          margin: "0 auto",
-          textAlign: "center",
-          fontSize: 30,
-          color: "aliceblue",
-        }}
-      >
-        Roadmap
-      </h2>
+
       <section id="roadmap">
         <img src={RoadmapPc} className="widthCls" />
         <img src={RoadmapMobile} className="widthClsMobile" />
       </section>
 
       {/* Main footer */}
-      <footer className="main-footer">
+      <footer className="main-footer" style={{ padding: "50px 0" }}>
         <div className="footer-container">
           <img
             src={logo}
@@ -911,7 +910,7 @@ function HomePage(props) {
                 </a>
               </li>
               <li className="main-footer-navbar__nav__item">
-                <a href="#features" className="main-footer-navbar__nav__link">
+                <a href="#values" className="main-footer-navbar__nav__link">
                   Values
                 </a>
               </li>

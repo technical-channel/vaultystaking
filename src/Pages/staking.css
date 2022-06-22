@@ -1,7 +1,6 @@
 .login-box {
-
     padding: 40px;
-    margin-top: 167px;
+    margin-top: 237px;
     color: #fff !important;
     width : 100%;
     margin-left: 50%;
@@ -13,7 +12,7 @@
 }
 
 .cardFont {
-  font-size : 14px;
+  font-size : 16px;
 }
 
 .btnStake {
@@ -218,3 +217,11 @@ button:disabled{
 flex-wrap: nowrap !important;
 }
 } 
+@media only screen and (max-width: 475px) {
+ 
+  
+  .cardFont{
+    font-size: 12px;
+  }
+ 
+  } 

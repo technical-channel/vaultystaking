@@ -131,7 +131,7 @@ function Airdrop(props) {
   }
   return (
     <div>
-      <div className="main-container" style={{ padding: "100px" }}>
+      <div className="main-containerCls">
         <header className="main-header">
           <div
             className="main-header-content-container"
@@ -230,7 +230,7 @@ function Airdrop(props) {
             {/* Participate in #cryptocontest Just follow simple steps. */}
             <>
               <div
-                className="main-header-content-container"
+                className="main-header-content-container flexDirRev"
                 style={{ justifyContent: "space-around", margin: 10 }}
               >
                 <div className="main-header-content-principal">
@@ -315,9 +315,8 @@ function Airdrop(props) {
               </div>
             </>
             <>
-              {" "}
               <div
-                className="main-header-content-container"
+                className="main-header-content-container flexDirRev"
                 style={{ justifyContent: "space-around" }}
               >
                 <div className="main-header-content-principal">
@@ -354,11 +353,11 @@ function Airdrop(props) {
                 />
               </div>
             </>
-            )
+
             <>
               {" "}
               <div
-                className="main-header-content-container"
+                className="main-header-content-container "
                 style={{ justifyContent: "space-around", margin: 10 }}
               >
                 <img
@@ -399,9 +398,8 @@ function Airdrop(props) {
               </div>
             </>
             <>
-              {" "}
               <div
-                className="main-header-content-container"
+                className="main-header-content-container flexDirRev"
                 style={{ justifyContent: "space-around" }}
               >
                 <div className="main-header-content-principal">
@@ -469,7 +467,16 @@ function Airdrop(props) {
               </a>
             </>
           ) : (
-            <h1 style={{ textAlign: "center" }}>Please Complete tasks</h1>
+            <h1
+              style={{
+                textAlign: "center",
+                fontSize: 26,
+                color: "white",
+                margin: "15px 0",
+              }}
+            >
+              Please Complete tasks
+            </h1>
           )}
         </header>
       </div>
