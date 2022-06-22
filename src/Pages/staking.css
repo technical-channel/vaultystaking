@@ -16,7 +16,7 @@
 }
 
 .btnStake {
-    background-color: #040347;
+    background-color: black;
     border: none;
     border-radius: 20px;
     color: white;
@@ -207,7 +207,7 @@ button:disabled{
   width:unset;
 }
 .btnStake {
- 
+   background-color: black;
   margin: 5px;
   padding: 5px;
   font-size: 10px;

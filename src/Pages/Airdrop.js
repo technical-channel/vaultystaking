@@ -222,21 +222,27 @@ function Airdrop(props) {
               </ul>
             </nav>
             <div class="container">
-              <div class="neon">Be A Millionier! </div>
+              <div class="neon">Be A Millionaire! </div>
               <div class="flux">
-                Participate in #cryptocontest Just follow simple steps.
+                Participate in #cryptocontest Just follow <b>5</b> simple steps.
               </div>
             </div>
-            {/* Participate in #cryptocontest Just follow simple steps. */}
+
             <>
               <div
                 className="main-header-content-container flexDirRev"
                 style={{ justifyContent: "space-around", margin: 10 }}
               >
                 <div className="main-header-content-principal">
-                  <h1 className="main-header-content-principal__title">
-                    Follow <span>#Vaultypro </span> &amp;
-                    <span className=""> #VaultyWallet</span>
+                  <h1
+                    className="main-header-content-principal__title"
+                    style={{ fontSize: 18 }}
+                  >
+                    <h1>Step 1:</h1>
+                    <h1>
+                      Follow <span>#Vaultypro </span> &amp;
+                      <span className=""> #VaultyWallet</span>
+                    </h1>
                   </h1>
                   <a
                     href="https://twitter.com/intent/tweet?button_hashtag=#Vaultypro #VaultyWallet&ref_src=twsrc%5Etfw"
@@ -284,8 +290,14 @@ function Airdrop(props) {
                   className=""
                 />
                 <div className="main-header-content-principal">
-                  <h1 className="main-header-content-principal__title">
-                    Join <span>Facebook Page</span>
+                  <h1
+                    className="main-header-content-principal__title"
+                    style={{ fontSize: 18 }}
+                  >
+                    <h1>Step 2:</h1>
+                    <h1>
+                      Join <span>Facebook Page</span>
+                    </h1>
                   </h1>
 
                   <a
@@ -320,9 +332,16 @@ function Airdrop(props) {
                 style={{ justifyContent: "space-around" }}
               >
                 <div className="main-header-content-principal">
-                  <h1 className="main-header-content-principal__title">
-                    Tag <span>3 Friends</span>
-                    <span className=""> In Comment Section</span>
+                  <h1
+                    className="main-header-content-principal__title"
+                    style={{ fontSize: 18 }}
+                  >
+                    <h1>Step 3:</h1>
+
+                    <h1>
+                      Tag <span>3 Friends</span>
+                      <span className=""> In Comment Section</span>
+                    </h1>
                   </h1>
 
                   <a
@@ -367,8 +386,14 @@ function Airdrop(props) {
                   className=""
                 />
                 <div className="main-header-content-principal">
-                  <h1 className="main-header-content-principal__title">
-                    Put A <span>Story Mentioning Us</span>
+                  <h1
+                    className="main-header-content-principal__title"
+                    style={{ fontSize: 18 }}
+                  >
+                    <h1>Step 4: </h1>
+                    <h1>
+                      Put A <span>Story Mentioning Us</span>
+                    </h1>
                   </h1>
 
                   <a
@@ -403,9 +428,15 @@ function Airdrop(props) {
                 style={{ justifyContent: "space-around" }}
               >
                 <div className="main-header-content-principal">
-                  <h1 className="main-header-content-principal__title">
-                    Join <span>Our</span>
-                    <span className=""> Telegram Group</span>
+                  <h1
+                    className="main-header-content-principal__title"
+                    style={{ fontSize: 18 }}
+                  >
+                    <h1>Step 5: </h1>
+                    <h1>
+                      Join <span>Our</span>
+                      <span className=""> Telegram Group</span>
+                    </h1>
                   </h1>
 
                   <a

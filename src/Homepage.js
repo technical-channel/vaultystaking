@@ -4,6 +4,7 @@ import React from "react";
 import moment from "moment";
 
 import logo from "./assets/logo.svg";
+import logoVlt from "./assets/logobuy.png";
 import bgImg from "./assets/ilustrator.png";
 import { useNavigate } from "react-router-dom";
 import cardicon1 from "./assets/cardicon1.png";
@@ -533,7 +534,7 @@ function HomePage(props) {
                                     alignItems: "center",
                                   }}
                                 >
-                                  <img src={keeToken} width="20" />
+                                  <img src={logoVlt} width="20" />
                                   <div>$VLT</div>
                                 </div>
                               </div>
