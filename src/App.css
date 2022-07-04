@@ -203,12 +203,10 @@
 .typewriter  {
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   /* border-right: .15em solid orange; The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
+ /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
    /* Adjust as needed */
-  animation: 
-    typing 3.5s steps(40, end),
-    blink-caret .75s step-end infinite;
+
 }
 
 /* The typing effect */
@@ -264,6 +262,10 @@
   0%,80% {
     transform: rotateY(360deg) 
   }
+}
+h3{
+  color: #fff !important;
+  font-size:1.3rem !important;
 }
 .main-header-navbar__nav__link {
   color: inherit;
@@ -570,7 +572,10 @@ button[disabled]{
   .cryptocurrencies-section
   .cryptocurrencies-info-cards
   .info-card {
+    
+    background: #1b2574e6;
   width: 100%;
+  color: #000;
   max-width: 290px;
   display: flex;
   flex-flow: row wrap;
@@ -587,7 +592,7 @@ button[disabled]{
   .cryptocurrencies-section
   .cryptocurrencies-info-cards
   .info-card:hover {
-  background-color: #09a5dd;
+  background-color: #0e34f0;
   color: #fff;
   transform: scale(1.05);
 }
@@ -596,7 +601,7 @@ button[disabled]{
   .cryptocurrencies-info-cards
   .info-card:hover
   p {
-  color: #fff;
+  color: rgb(250, 250, 250);
 }
 .main-content
   .cryptocurrencies-section
@@ -653,7 +658,7 @@ button[disabled]{
   .info-card__description {
   font-size: 1.4rem;
   width: 70%;
-  color: #646464;
+  color: #fff;
 }
 .main-content
   .cryptocurrencies-section
@@ -661,7 +666,7 @@ button[disabled]{
   .info-card__btn {
   width: 150px;
   padding: 9px 10px;
-  background-color: #3671e9;
+  background-color: #1b29ed;
   color: #fff;
   border-radius: 25px;
   display: inline-block;
@@ -676,8 +681,8 @@ button[disabled]{
   .info-card__btn
   i {
   margin-left: 10px;
-  color: #3671e9;
-  background-color: #fff;
+  color: #3671e9 !important;
+  background-color: rgb(34, 7, 209);
   border-radius: 50%;
   padding: 5px;
   width: 25px;
@@ -1033,7 +1038,7 @@ button[disabled]{
 }
 .main-footer__logo {
   width: 220px;
-  margin-bottom: 35px;
+  margin-bottom: 15px;
 }
 .main-footer-navbar {
   width: 100%;
@@ -1046,7 +1051,7 @@ button[disabled]{
 .main-footer-navbar__nav {
   width: 70%;
   list-style-type: none;
-  margin-bottom: 35px;
+  margin-bottom: 15px;
 }
 .main-footer-navbar__nav__title {
   
@@ -1056,12 +1061,12 @@ button[disabled]{
   color: #fff;
 }
 .main-footer-navbar__nav__item {
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 .main-footer-navbar__nav__link {
   text-decoration: none;
   color: #fff;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   font-weight: 400;
   transition: color 0.3s ease-in;
 }
@@ -1118,7 +1123,7 @@ button[disabled]{
   text-align: center;
   width: 100%;
   font-weight: 400;
-  margin-bottom: 25px;
+
 }
 .main-footer .copy-and-social .social-icons {
   width: 100%;

@@ -23,6 +23,7 @@ function Congratulations() {
                 onClick={() => {
                   navigate("/");
                 }}
+                style={{ marginTop: 80, cursor: "pointer" }}
               >
                 Go to Home
               </a>

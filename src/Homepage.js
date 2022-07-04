@@ -7,6 +7,7 @@ import logo from "./assets/logo.svg";
 import logoVlt from "./assets/logobuy.png";
 import bgImg from "./assets/ilustrator.png";
 import { useNavigate } from "react-router-dom";
+import pdf from "./assets/VaultyWp.pdf";
 import cardicon1 from "./assets/cardicon1.png";
 import cardicon2 from "./assets/cardicon2.png";
 import cardicon3 from "./assets/cardicon3.png";
@@ -39,6 +40,7 @@ import { busdAbi, icoAbi } from "./Constants/Abi";
 import { store } from "./Redux/store";
 import { ProgressBar } from "react-bootstrap";
 import CounterComponent from "./Components/Counter";
+import Footer from "./Components/Footer";
 function HomePage(props) {
   const [connect, setConnect] = useState(false);
   const navigate = useNavigate();
@@ -365,11 +367,13 @@ function HomePage(props) {
           <div className="main-header-content-container">
             <div className="main-header-content-principal">
               <h1 className="main-header-content-principal__title">
-                Fastest &amp; <span>secure platform </span> to invest in{" "}
-                <span className=""> crypto</span>
+                The most Securitized & Convenient Wallet to store Cryptos & NFTs
               </h1>
               <p className="main-header-content-principal__description typewriter">
-                Buy cryptocurrencies, trusted by various users.
+                Buying cryptos doesn’t have to be hurtful. With Vaulty, you will
+                experience a pain- free transaction as we keep the process is
+                simple.Safeguard your wallet and coins while paying the lowest
+                fees ever.
               </p>
               <button
                 className="glow-on-hover"
@@ -395,19 +399,30 @@ function HomePage(props) {
           <div className="stats-section">
             <div className="stats-section__reference">
               <i className="fas fa-chart-line" />
-              <h3 className="stats-section__reference__title">100 $VLT</h3>
-              <p className="stats-section__reference__description">Staking</p>
+              <h3 className="stats-section__reference__title">Wallet</h3>
+              <p className="stats-section__reference__description">
+                Crypto Wallet
+              </p>
             </div>
             <div className="stats-section__reference">
               <i className="fas fa-user" />
-              <h3 className="stats-section__reference__title">100+</h3>
-              <p className="stats-section__reference__description">Buy</p>
+              <h3 className="stats-section__reference__title">Exchange</h3>
+              <p className="stats-section__reference__description">
+                Built In Exchange
+              </p>
             </div>
             <div className="stats-section__reference">
               <i className="fas fa-globe" />
-              <h3 className="stats-section__reference__title">195</h3>
+              <h3 className="stats-section__reference__title">Staking</h3>
               <p className="stats-section__reference__description">
-                Countries Supported
+                Stake & Earn
+              </p>
+            </div>
+            <div className="stats-section__reference">
+              <i className="fas fa-credit-card" />
+              <h3 className="stats-section__reference__title">Cards</h3>
+              <p className="stats-section__reference__description">
+                Vaulty Master Cards
               </p>
             </div>
           </div>
@@ -415,16 +430,15 @@ function HomePage(props) {
           <div className="why-us-section" id="buy">
             <div className="why-us-section__content">
               <h2 className="why-us-section__content__title">
-                Why you should choose
+                Why choose Vaulty?
               </h2>
               <p className="why-us-section__content__description">
                 VAULTY is a digital finances app, with digital assets that
                 combine wallets to send, receive, exchange, earn and borrow
-                (All-In-One Wallet System). Under the direction of Mr. Saitej,
-                Vaulty was founded with a vision to uplift trust and security
-                throughout the digital spectrum and with that, a group of
-                technical and marketing teams has been established in Dubai,
-                Estonia & India..
+                (All-In-One Wallet System). Vaulty was founded with a vision to
+                uplift trust and security throughout the digital spectrum and
+                with that, a group of technical and marketing teams has been
+                established in Dubai, Estonia & Ukraine.
               </p>
               {/* <a className="why-us-section__content__btn" onClick={handelPopup}>
                 Buy Now
@@ -615,7 +629,7 @@ function HomePage(props) {
                   )}
                 </>
               ) : (
-                <h2>Please Connect Wallet</h2>
+                <h1>Please Connect Wallet</h1>
               )}
             </div>
             <img
@@ -759,12 +773,22 @@ function HomePage(props) {
         <section className="features-section" id="values">
           <h2 className="features-section__title">Our Core Values</h2>
           <article className="invest-smart-article">
-            <div className="invest-smart-article__content">
-              <h3 className="invest-smart-article__content__title">
-                Community
-              </h3>
+            <div
+              className="invest-smart-article__content"
+              style={{ flexDirection: "column", alignItems: "baseline" }}
+            >
+              <h2
+                className="invest-smart-article__content__title"
+                style={{ fontSize: "4rem !important" }}
+              >
+                OUR VISION{" "}
+              </h2>
+              <br />
               <p className="invest-smart-article__content__description">
-                The Vaulty ecosystem's most valuable asset is its community.
+                Vaulty has a vision to simplify fintech, by allowing Crypto to
+                Fiat ($VLT) transactions done instantaneously and with ease. We
+                envision to give bank like features to people without bank
+                access.
               </p>
             </div>
             <img
@@ -776,11 +800,14 @@ function HomePage(props) {
           </article>
           <article className="detailed-stats-article">
             <div className="detailed-stats-article__content">
-              <h3 className="detailed-stats-article__content__title">
-                Utility
-              </h3>
+              <h2 className="detailed-stats-article__content__title">
+                OUR MISSION
+              </h2>
               <p className="detailed-stats-article__content__description">
-                In the crypto relm we belive utility is the cornerstone .
+                Vaulty’s mission is to offer simple, transparent & fast
+                transactions within an ecosystem that's created to give people
+                the power to move digital value through traditional or crypto
+                securely.
               </p>
             </div>
             <img
@@ -791,10 +818,16 @@ function HomePage(props) {
             />
           </article>
           <article className="grow-profit-article">
-            <div className="grow-profit-article__content">
-              <h3 className="grow-profit-article__content__title">
+            <div
+              className="grow-profit-article__content"
+              style={{ flexDirection: "column", alignItems: "baseline" }}
+            >
+              <h2
+                className="grow-profit-article__content__title"
+                style={{ fontSize: "24px !important" }}
+              >
                 Inclusivity
-              </h3>
+              </h2>
               <p className="grow-profit-article__content__description">
                 At Vaulty we put inclusivity at the center of our purpose.
               </p>
@@ -886,7 +919,7 @@ function HomePage(props) {
       </section>
 
       {/* Main footer */}
-      <footer className="main-footer" style={{ padding: "50px 0" }}>
+      <footer className="main-footer" style={{ padding: "10px 0" }}>
         <div className="footer-container">
           <img
             src={logo}
@@ -933,7 +966,7 @@ function HomePage(props) {
               </li>
               <li className="main-footer-navbar__nav__item">
                 <a
-                  href="https://drive.google.com/file/d/1BbVJPPl04BnYQLJi-IHcABw1dmMNj-yd/view?usp=sharing"
+                  href={pdf}
                   target="_blank"
                   className="main-footer-navbar__nav__link"
                 >
@@ -967,6 +1000,7 @@ function HomePage(props) {
           </div>
         </div>
       </footer>
+      {/* <Footer /> */}
       {/* Attribution footer */}
     </div>
   );

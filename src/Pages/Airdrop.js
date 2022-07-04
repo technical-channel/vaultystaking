@@ -17,7 +17,6 @@ import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
 import { airdropABI } from "../Config/ABI/AirdopABI";
-import { airDrop } from "../Config/Contract/ICO_Contract";
 
 function Airdrop(props) {
   const [connect, setConnect] = useState(false);
@@ -70,7 +69,7 @@ function Airdrop(props) {
 
   const airDropUsersList = async () => {
     return await new web3_.eth.Contract(airdropABI, airdrop).methods
-      .AirDropUsers()
+      .getUsersList()
       .call();
   };
 
@@ -96,13 +95,13 @@ function Airdrop(props) {
     if (connect != true) {
       Swal.fire("Please Connect Wallet");
     } else {
-      let aidropBalance = await vaultyBalanceOf(airDrop);
+      let aidropBalance = await vaultyBalanceOf(airdrop);
       console.log(aidropBalance, "Balance of Airdop");
 
       let allUsers = await airDropUsersList();
       console.log(allUsers, "users list");
-      let airOwner = await airDropOwner();
-      console.log(airOwner, "Air Dop Owner");
+      // let airOwner = await airDropOwner();
+      // console.log(airOwner, "Air Dop Owner");
       let airToken = await airDropToken();
       console.log(airToken, "Air Dop Owner");
       let userAlready = await isAddressInArray(allUsers);
@@ -225,6 +224,9 @@ function Airdrop(props) {
               <div class="neon">Be A Millionaire! </div>
               <div class="flux">
                 Participate in #cryptocontest Just follow <b>5</b> simple steps.
+              </div>
+              <div class="flux">
+                The First 1 Lakh users will get 100 tokens instantly.
               </div>
             </div>
 
