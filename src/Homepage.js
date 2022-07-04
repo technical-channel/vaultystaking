@@ -631,6 +631,7 @@ function HomePage(props) {
                           border: "2px solid white",
                           padding: 15,
                           borderRadius: 5,
+                          color: "white !imporant",
                         }}
                       >
                         ICO Is Over You Can Not Invest
@@ -646,6 +647,7 @@ function HomePage(props) {
                     border: "2px solid white",
                     padding: 15,
                     borderRadius: 5,
+                    color: "white !imporant",
                   }}
                 >
                   Please Connect Wallet
@@ -758,12 +760,12 @@ function HomePage(props) {
         {/* Cryptocurrencies section */}
         <section className="cryptocurrencies-section" id="products">
           <h2 className="cryptocurrencies-section__title">
-            Advantages OF Using Vaulty
+            Advantages Of Using Vaulty
           </h2>
           <div className="cryptocurrencies-info-cards">
             <div className="info-card">
               <img src={cardicon1} width="60" />
-              <h3 className="info-card__title">Crypto Traders </h3>
+              <h3 className="info-card__title">CRYPTO TRADERS </h3>
               <p className="info-card__description">
                 The platform will enable cryptocurrency traders to buy and sell
                 cryptocurrencies.
@@ -771,7 +773,7 @@ function HomePage(props) {
             </div>
             <div className="info-card">
               <img src={cardicon2} width="60" />
-              <h3 className="info-card__title">TOKEN TO Vaulty (T2C)</h3>
+              <h3 className="info-card__title">TOKEN TO VAULTY (T2C)</h3>
               <p className="info-card__description">
                 A feature pioneered by Vaulty to exchange Token to Coin. This
                 feature enables new token companies to list on Vaulty.

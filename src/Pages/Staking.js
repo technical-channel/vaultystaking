@@ -505,7 +505,10 @@ function Staking(props) {
                     >
                       {!Approval ? (
                         <>
-                          <a onClick={handleApprove}>
+                          <a
+                            onClick={handleApprove}
+                            style={{ cursor: "pointer" }}
+                          >
                             <span />
                             <span />
                             <span />
@@ -517,7 +520,7 @@ function Staking(props) {
                         <></>
                       )}
 
-                      <a onClick={handleStake}>
+                      <a onClick={handleStake} style={{ cursor: "pointer" }}>
                         <span />
                         <span />
                         <span />
