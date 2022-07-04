@@ -624,12 +624,32 @@ function HomePage(props) {
                     </>
                   ) : (
                     <>
-                      <h2>ICO Is Over You Can Not Invest</h2>
+                      <h1
+                        style={{
+                          fontSize: "3rem",
+
+                          border: "2px solid white",
+                          padding: 15,
+                          borderRadius: 5,
+                        }}
+                      >
+                        ICO Is Over You Can Not Invest
+                      </h1>
                     </>
                   )}
                 </>
               ) : (
-                <h1>Please Connect Wallet</h1>
+                <h1
+                  style={{
+                    fontSize: "3rem",
+
+                    border: "2px solid white",
+                    padding: 15,
+                    borderRadius: 5,
+                  }}
+                >
+                  Please Connect Wallet
+                </h1>
               )}
             </div>
             <img
