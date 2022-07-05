@@ -271,8 +271,14 @@ function HomePage(props) {
             />
             <ul className="main-header-navbar__nav">
               <li className="main-header-navbar__nav__item">
-                <a href="#" className="main-header-navbar__nav__link">
-                  Home
+                <a
+                  href="#"
+                  className="main-header-navbar__nav__link"
+                  onClick={() => {
+                    navigate("/coininfo");
+                  }}
+                >
+                  Token Info
                 </a>
               </li>
               <li className="main-header-navbar__nav__item">
@@ -367,7 +373,8 @@ function HomePage(props) {
           <div className="main-header-content-container">
             <div className="main-header-content-principal">
               <h1 className="main-header-content-principal__title">
-                The most Securitized & Convenient Wallet to store Cryptos & NFTs
+                The Most Securitized & Convenient Wallet To Store Cryptos &
+                NFT's
               </h1>
               <p className="main-header-content-principal__description typewriter">
                 Buying cryptos doesn’t have to be hurtful. With Vaulty, you will
@@ -375,14 +382,30 @@ function HomePage(props) {
                 simple.Safeguard your wallet and coins while paying the lowest
                 fees ever.
               </p>
-              <button
-                className="glow-on-hover"
-                onClick={() => {
-                  navigate("/airdrop");
-                }}
-              >
-                Airdrop
-              </button>
+              <div class="flex flex-wrap">
+                {" "}
+                <button
+                  className="glow-on-hover"
+                  onClick={() => {
+                    navigate("/airdrop");
+                  }}
+                  style={{ width: "150px", height: "auto" }}
+                >
+                  Airdrop
+                </button>
+                <a
+                  href={pdf}
+                  target="_blank"
+                  className="main-footer-navbar__nav__link"
+                >
+                  <button
+                    className="glow-on-hover mx-2"
+                    style={{ width: "150px", height: "auto" }}
+                  >
+                    Whitepaper
+                  </button>
+                </a>
+              </div>
             </div>
             <img
               src={bgImg}
@@ -430,7 +453,7 @@ function HomePage(props) {
           <div className="why-us-section" id="buy">
             <div className="why-us-section__content">
               <h2 className="why-us-section__content__title">
-                Why choose Vaulty?
+                Why Choose Vaulty?
               </h2>
               <p className="why-us-section__content__description">
                 VAULTY is a digital finances app, with digital assets that
@@ -624,34 +647,22 @@ function HomePage(props) {
                     </>
                   ) : (
                     <>
-                      <h1
-                        style={{
-                          fontSize: "3rem",
-
-                          border: "2px solid white",
-                          padding: 15,
-                          borderRadius: 5,
-                          color: "white !imporant",
-                        }}
+                      <button
+                        className="glow-on-hover"
+                        style={{ width: "300px", height: "auto" }}
                       >
                         ICO Is Over You Can Not Invest
-                      </h1>
+                      </button>
                     </>
                   )}
                 </>
               ) : (
-                <h1
-                  style={{
-                    fontSize: "3rem",
-
-                    border: "2px solid white",
-                    padding: 15,
-                    borderRadius: 5,
-                    color: "white !imporant",
-                  }}
+                <button
+                  className="glow-on-hover"
+                  style={{ width: "300px", height: "unset" }}
                 >
                   Please Connect Wallet
-                </h1>
+                </button>
               )}
             </div>
             <img
@@ -796,8 +807,8 @@ function HomePage(props) {
           <h2 className="features-section__title">Our Core Values</h2>
           <article className="invest-smart-article">
             <div
-              className="invest-smart-article__content"
-              style={{ flexDirection: "column", alignItems: "baseline" }}
+              className="invest-smart-article__content justify-center md:justify-baseline"
+              style={{ flexDirection: "column", alignItems: "unset" }}
             >
               <h2
                 className="invest-smart-article__content__title"
@@ -841,8 +852,8 @@ function HomePage(props) {
           </article>
           <article className="grow-profit-article">
             <div
-              className="grow-profit-article__content"
-              style={{ flexDirection: "column", alignItems: "baseline" }}
+              className="grow-profit-article__content items-baseline md:justify-center"
+              style={{ flexDirection: "column", alignItems: "unset" }}
             >
               <h2
                 className="grow-profit-article__content__title"
@@ -941,16 +952,16 @@ function HomePage(props) {
       </section>
 
       {/* Main footer */}
-      <footer className="main-footer" style={{ padding: "10px 0" }}>
+      {/* <footer className="main-footer" style={{ padding: "10px 0" }}>
         <div className="footer-container">
           <img
             src={logo}
             alt="KeeSwap company logo"
             className="main-footer__logo"
           />
-          {/* Footer navs */}
+
           <nav className="main-footer-navbar">
-            {/* Quick Link nav */}
+
             <ul className="main-footer-navbar__nav">
               <li className="main-footer-navbar__nav__item">
                 <h3 className="main-footer-navbar__nav__title">Quick Link</h3>
@@ -981,7 +992,7 @@ function HomePage(props) {
                 </a>
               </li>
             </ul>
-            {/* Resources link */}
+
             <ul className="main-footer-navbar__nav">
               <li className="main-footer-navbar__nav__item">
                 <h3 className="main-footer-navbar__nav__title">Resources</h3>
@@ -997,9 +1008,7 @@ function HomePage(props) {
               </li>
             </ul>
           </nav>
-          {/* Payment systems */}
 
-          {/* Copy and social links */}
           <div className="copy-and-social">
             <h3
               className="copy-and-social__copy"
@@ -1021,8 +1030,8 @@ function HomePage(props) {
             </div>
           </div>
         </div>
-      </footer>
-      {/* <Footer /> */}
+      </footer> */}
+      <Footer />
       {/* Attribution footer */}
     </div>
   );

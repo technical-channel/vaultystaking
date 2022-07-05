@@ -211,7 +211,6 @@ function Staking(props) {
   // console.log(new web3_.eth.Contract(StakingABI, staking));
   return (
     <div>
-      {console.log("User Data : ", UserData)}
       <div className="main-container" style={{ padding: "20px" }}>
         <header className="main-header">
           <div
