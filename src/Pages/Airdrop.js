@@ -238,7 +238,7 @@ function Airdrop(props) {
           <h1 style={{ textAlign: "center" }} className="neon">
             Airdrop
           </h1>
-          <h1 style={{ padding: 5, textAlign: "center" }}>
+          <h1 style={{ padding: 5, textAlign: "center", fontSize: 22 }}>
             How To Participate?
           </h1>
           <div
