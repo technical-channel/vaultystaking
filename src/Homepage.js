@@ -389,7 +389,7 @@ function HomePage(props) {
                   onClick={() => {
                     navigate("/airdrop");
                   }}
-                  style={{ width: "150px", height: "auto" }}
+                  style={{ width: "150px", height: "auto", padding: 10 }}
                 >
                   Airdrop
                 </button>
@@ -400,7 +400,7 @@ function HomePage(props) {
                 >
                   <button
                     className="glow-on-hover mx-2"
-                    style={{ width: "150px", height: "auto" }}
+                    style={{ width: "150px", height: "auto", padding: 10 }}
                   >
                     Whitepaper
                   </button>
@@ -639,7 +639,16 @@ function HomePage(props) {
                                 style={{ width: 30, height: 30 }}
                               />
                             ) : (
-                              <>Add To Whitelist</>
+                              <button
+                                className="glow-on-hover"
+                                style={{
+                                  width: "300px",
+                                  height: "auto",
+                                  padding: 10,
+                                }}
+                              >
+                                Add To Whitelist
+                              </button>
                             )}
                           </a>
                         </>
@@ -649,7 +658,7 @@ function HomePage(props) {
                     <>
                       <button
                         className="glow-on-hover"
-                        style={{ width: "300px", height: "auto" }}
+                        style={{ width: "300px", height: "auto", padding: 10 }}
                       >
                         ICO Is Over You Can Not Invest
                       </button>
@@ -659,7 +668,7 @@ function HomePage(props) {
               ) : (
                 <button
                   className="glow-on-hover"
-                  style={{ width: "300px", height: "unset" }}
+                  style={{ width: "300px", height: "auto", padding: 10 }}
                 >
                   Please Connect Wallet
                 </button>
