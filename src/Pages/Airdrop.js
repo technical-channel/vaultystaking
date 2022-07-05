@@ -389,12 +389,22 @@ function Airdrop(props) {
         selectedMonth.five ? (
           <>
             <div className="flex justify-center my-3">
-              <button>Claim Airdrop</button>
+              <button
+                className="glow-on-hover"
+                style={{ width: "300px", height: "auto", padding: 10 }}
+              >
+                Claim Airdrop
+              </button>
             </div>
           </>
         ) : (
           <div className="flex justify-center my-3">
-            <button>Please Complete All Tasks</button>
+            <button
+              className="glow-on-hover"
+              style={{ width: "300px", height: "auto", padding: 10 }}
+            >
+              Please Complete All Tasks
+            </button>
           </div>
         )}
       </div>
