@@ -2,6 +2,9 @@
   font-family: neon;
   src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
 }
+.heightCls {
+  height: auto;
+}
 .button {
   outline: 0;
   position: relative;
@@ -106,5 +109,10 @@ button:hover {
     text-shadow: 0 0 0.5vw #082180, 0 0 1.5vw #082180, 0 0 5vw #082180,
       0 0 5vw #082180, 0 0 0.2vw #082180, 0.5vw 0.5vw 0.1vw #0a3940;
     color: #146c80;
+  }
+}
+@media (max-width: 1000px) {
+  .heightCls {
+    height: 100vh;
   }
 }
