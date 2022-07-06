@@ -382,27 +382,37 @@ function HomePage(props) {
                 simple.Safeguard your wallet and coins while paying the lowest
                 fees ever.
               </p>
-              <div class="flex flex-wrap">
+              <div class="flex flex-wrap items-center mx-2">
                 {" "}
                 <button
-                  className="glow-on-hover"
                   onClick={() => {
                     navigate("/airdrop");
                   }}
-                  style={{ width: "150px", height: "auto", padding: 10 }}
+                  style={{
+                    padding: 10,
+                    height: "auto",
+                    width: "fit-content",
+                    fontSize: "14px",
+                  }}
+                  className="bg-gradient-to-r from-[#a42e9a] to-[#5951f6]"
                 >
                   Airdrop
                 </button>
                 <a
                   href={pdf}
                   target="_blank"
-                  className="main-footer-navbar__nav__link"
+                  className="main-footer-navbar__nav__link mx-2"
                 >
                   <button
-                    className="glow-on-hover mx-2"
-                    style={{ width: "150px", height: "auto", padding: 10 }}
+                    style={{
+                      padding: 10,
+                      height: "auto",
+                      width: "fit-content",
+                      fontSize: "14px",
+                    }}
+                    className="bg-gradient-to-r from-[#a42e9a] to-[#5951f6]"
                   >
-                    Whitepaper
+                    Whitepaper <i class="fa fa-download"></i>
                   </button>
                 </a>
               </div>

@@ -141,6 +141,7 @@ function Airdrop(props) {
           backgroundImage: `url(${image1})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
+          height: "100vh",
         }}
       >
         <header className="main-header">
@@ -242,7 +243,7 @@ function Airdrop(props) {
             How To Participate?
           </h1>
           <div
-            className="main-header-content-container flexDirRev"
+            className="main-header-content-container "
             style={{ justifyContent: "center" }}
           >
             <div
