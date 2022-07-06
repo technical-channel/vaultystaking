@@ -136,12 +136,11 @@ function Airdrop(props) {
   return (
     <div>
       <div
-        className="main-containerCls"
+        className="main-containerCls heightCls"
         style={{
           backgroundImage: `url(${image1})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          height: "100vh",
         }}
       >
         <header className="main-header">
