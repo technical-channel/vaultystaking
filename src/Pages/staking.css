@@ -216,4 +216,7 @@ button:disabled {
   .cardFont {
     font-size: 12px;
   }
+  .login-box {
+    margin-top: 337px;
+  }
 }

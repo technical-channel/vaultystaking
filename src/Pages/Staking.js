@@ -524,27 +524,27 @@ function Staking(props) {
           </form>
         </div> */}
         <div class="login-box">
-          <div className="flex justify-around">
-            <div className="flex items-center">
+          <div className="flex flex-wrap justify-between gap-4 ">
+            <div className="flex justify-center md:justify-start ">
               <img src={logo} style={{ width: "50% " }} />
             </div>
             <div className="flex flex-col">
-              <p className="text-xl text-gray">Claimable(USDT) Value</p>
+              <p className="text-2xl text-gray">Claimable(USDT) Value</p>
               <p className="text-3xl text-bold">$0</p>
             </div>
             <div className="flex flex-col">
-              <p className="text-xl">APY</p>
+              <p className="text-2xl">APY</p>
               <p className="text-3xl">{apy}%</p>
             </div>
             <div className="flex flex-col">
-              <p className="text-xl">My VLT Staked</p>
+              <p className="text-2xl">My VLT Staked</p>
               <p className="text-3xl">
                 {" "}
                 {UserData && UserData.stackAmount / Math.pow(10, 9)} $VLT
               </p>
             </div>
             <div className="flex flex-col">
-              <p className="text-xl">Total Balance</p>
+              <p className="text-2xl">Total Balance</p>
               <p className="text-3xl">
                 {" "}
                 {UserBalance &&
@@ -552,76 +552,76 @@ function Staking(props) {
                 $VLT
               </p>
             </div>
-
-            <div></div>
           </div>
           <hr className="bg-gradient-to-r from-[#a42e9a] to-[#5951f6] 2-xl" />
           <div className="flex flex-col">
-            <div className="flex ">
-              <button
-                onClick={() => {
-                  setMonth(1);
-                  setSelectedMonth({
-                    one: true,
-                    two: false,
-                    three: false,
-                    four: false,
-                  });
-                  setApy(1);
-                }}
-                disabled={selectedMonth.one}
-                class="px-4 py-2 mx-2 border border-sky-500 bg-transparent hover:bg-gradient-to-r from-[#a42e9a] to-[#5951f6] text-white text-xl font-medium rounded-full"
-              >
-                1 Month
-              </button>
-              <button
-                onClick={() => {
-                  setMonth(2);
-                  setSelectedMonth({
-                    one: false,
-                    two: true,
-                    three: false,
-                    four: false,
-                  });
-                  setApy(2);
-                }}
-                disabled={selectedMonth.two}
-                class="px-4 py-2 mx-2 border border-sky-500 bg-transparent hover:bg-gradient-to-r from-[#a42e9a] to-[#5951f6] text-white text-xl font-medium rounded-full"
-              >
-                3 Months
-              </button>
-              <button
-                onClick={() => {
-                  setMonth(3);
-                  setSelectedMonth({
-                    one: false,
-                    two: false,
-                    three: true,
-                    four: false,
-                  });
-                  setApy(3);
-                }}
-                disabled={selectedMonth.three}
-                class="px-4 py-2 mx-2 border border-sky-500 bg-transparent hover:bg-gradient-to-r from-[#a42e9a] to-[#5951f6] text-white text-xl font-medium rounded-full"
-              >
-                9 Months
-              </button>
-              <button
-                onClick={() => {
-                  setMonth(4);
-                  setSelectedMonth({
-                    one: false,
-                    two: false,
-                    three: false,
-                    four: true,
-                  });
-                  setApy(4);
-                }}
-                disabled={selectedMonth.four}
-                class="px-4 py-2 mx-2 border border-sky-500 bg-transparent hover:bg-gradient-to-r from-[#a42e9a] to-[#5951f6] text-white text-xl font-medium rounded-full"
-              >
-                12 Months
-              </button>
+            <div className="flex">
+              <div className="flex-row md:flex-col justify-center">
+                <button
+                  onClick={() => {
+                    setMonth(1);
+                    setSelectedMonth({
+                      one: true,
+                      two: false,
+                      three: false,
+                      four: false,
+                    });
+                    setApy(1);
+                  }}
+                  disabled={selectedMonth.one}
+                  class="px-4 py-2 mx-2 border border-sky-500 bg-transparent hover:bg-gradient-to-r from-[#a42e9a] to-[#5951f6] text-white text-2xl font-medium rounded-full"
+                >
+                  1 Month
+                </button>
+                <button
+                  onClick={() => {
+                    setMonth(2);
+                    setSelectedMonth({
+                      one: false,
+                      two: true,
+                      three: false,
+                      four: false,
+                    });
+                    setApy(2);
+                  }}
+                  disabled={selectedMonth.two}
+                  class="px-4 py-2 mx-2 border border-sky-500 bg-transparent hover:bg-gradient-to-r from-[#a42e9a] to-[#5951f6] text-white text-2xl font-medium rounded-full"
+                >
+                  3 Months
+                </button>
+                <button
+                  onClick={() => {
+                    setMonth(3);
+                    setSelectedMonth({
+                      one: false,
+                      two: false,
+                      three: true,
+                      four: false,
+                    });
+                    setApy(3);
+                  }}
+                  disabled={selectedMonth.three}
+                  class="px-4 py-2 mx-2 border border-sky-500 bg-transparent hover:bg-gradient-to-r from-[#a42e9a] to-[#5951f6] text-white text-2xl font-medium rounded-full"
+                >
+                  9 Months
+                </button>
+                <button
+                  onClick={() => {
+                    setMonth(4);
+                    setSelectedMonth({
+                      one: false,
+                      two: false,
+                      three: false,
+                      four: true,
+                    });
+                    setApy(4);
+                  }}
+                  disabled={selectedMonth.four}
+                  class="px-4 py-2 mx-2 border border-sky-500 bg-transparent hover:bg-gradient-to-r from-[#a42e9a] to-[#5951f6] text-white text-2xl font-medium rounded-full"
+                >
+                  12 Months
+                </button>
+              </div>
             </div>
             <div>
               <p className="text-3xl py-5">
@@ -649,7 +649,7 @@ function Staking(props) {
                       Amount of VLT to Stake
                     </span>
                     <input
-                      className="outline-transparent py-[14px] px-[20px] text-white bg-[#020123] w-full text-xl rounded-2xl"
+                      className="outline-transparent py-[14px] px-[20px] text-white bg-[#020123] w-full text-2xl rounded-2xl"
                       type="number"
                       min={1}
                       step={0.01}
