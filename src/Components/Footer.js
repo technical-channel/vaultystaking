@@ -12,8 +12,8 @@ export default function Footer() {
           <div>
             <ul style={{ textAlign: "justify" }}>
               <li className="text-2xl p-2 font-bold text-white">Application</li>
-              <li className="p-2">Apple Store Logo</li>
-              <li className="p-2">Android Store Logo</li>
+              <li className="p-2 text-xl">Apple Store Logo</li>
+              <li className="p-2 text-xl">Android Store Logo</li>
             </ul>
           </div>
 
@@ -21,14 +21,14 @@ export default function Footer() {
             {" "}
             <ul style={{ textAlign: "justify" }}>
               <li className="text-2xl py-2 font-bold text-white">Conditions</li>
-              <li>MasterCard </li>
-              <li>Terms of Service</li>
-              <li> Anti Fraud Policy</li>
-              <li> Cookie Policy</li>
-              <li>Terms of Credits</li>
-              <li>Privacy Policy</li>
-              <li>Terms of Use</li>
-              <li>Terms of Exchange</li>
+              <li className="text-xl">MasterCard </li>
+              <li className="text-xl">Terms of Service</li>
+              <li className="text-xl"> Anti Fraud Policy</li>
+              <li className="text-xl"> Cookie Policy</li>
+              <li className="text-xl">Terms of Credits</li>
+              <li className="text-xl">Privacy Policy</li>
+              <li className="text-xl">Terms of Use</li>
+              <li className="text-xl">Terms of Exchange</li>
             </ul>
           </div>
           <div>
@@ -100,7 +100,7 @@ export default function Footer() {
           className="text-center text-2xl p-4"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
         >
-          ©2022 Valuty. All rights reserved
+          ©2022 Vaulty. All rights reserved
         </div>
       </footer>
     </div>
